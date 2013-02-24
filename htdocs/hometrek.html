@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+    <title>MagIO2 LCARS</title>
+    <script type="text/javascript" src="scripts/jquery-1.9.1.js"></script>
+    <script type="text/javascript">
+  // onload in jquery
+  $(document).ready( function() {
+    // remove the warning fast
+    $("#mainContainer").html("");
+    getScreen( "login" );
+  });
+  
+	/*
+   * This is for getting the configuration from the server
+   */
+  var jsonResponse;
+  var session="x";
+	function getScreen(screenName, user, pwd) {
+    $.ajax({
+      url: "/cgi-bin/getScreenInfo.py",
+		  type: "post",
+      data: {'page': screenName, 'user':user, 'pass':pwd, 'session':session } ,
+      dataType: "json",
+      success : function (response) { jsonResponse = response; buildScreen( "jsonResponse","mainContainer" ) }
+    });
+  }
+  
+  var layouts=new Array();
+  // respname is a string of the subtree of the response to be processed - this allows recursive build
+	function buildScreen( respname, container ) {
+    var response = eval( respname );
+    // has the layout already been loaded?
+    if( !layouts[ response.layout ] ) {
+      // no, so load it and create an instance of the layout to call the createLayout-function
+      $.getScript( "scripts/"+response.layout+".js", function() {
+        layouts[ response.layout ] = eval( "new "+response.layout+"();" );
+        // !don't move to the else!
+        layouts[ response.layout ].createLayout(respname, container);
+      });
+    } else {
+      layouts[ response.layout ].createLayout(respname, container);
+    }
+	}
+
+  var menuRegistry = new Array();
+  var menuScripts = new Array();
+  
+  function menuClicked( which ) {
+    if( menuScripts[ which ] ) {
+      //$('#mainStatus').html( "<font face=\"lcarsgtj3,Arial\" class=\"trk_leuchtblau\" size=\"5\">"+menuScripts[ which ]+"</font>" );
+      eval( menuScripts[ which ] );
+    } else {
+      $('#mainStatus').html( "<font face=\"lcarsgtj3,Arial\" class=\"trk_leuchtblau\" size=\"5\">"+which+"</font>" );
+    }
+  }
+  
+	function activateMenu(theclass, actColor, inactColor) {
+	  $("."+theclass ).mouseover(function (event) {
+      $(this).css("background-color",actColor);
+	    //if( event.target.id.substring(0,4) == "menu" ) {
+		    playSound("images/210.wav");
+		  //}
+    });
+	  $("."+theclass).mouseout(function () {
+         $(this).css("background-color",inactColor);
+    });
+	  $("."+theclass).click(function() {
+	    playSound("images/202.wav");
+		  menuClicked( this.id );
+	  });
+  }
+
+  function playSound(soundfile) {
+		$("#mainDummy").html( "" );
+    $("#mainDummy").append("<embed id=\"snd\" src=\""+soundfile+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" width=1 height=1/>");
+	}
+    </script>
+
+    <link rel="stylesheet" type="text/css" href="css/hometrek_style1.css" />
+  </head>
+  <body class="trk_body">
+    <!-- This is the container for the screen "painted" by script -->
+    <table style="table-layout:fixed;" width="100%" height="99%" cellpadding="0" cellspacing="0" border="0">
+      <tr><td id="mainContainer" class="mainText" height="100%" width="100%">This page you'd better enjoy with JavaScript enabled :o)</td></tr>
+    </table>
+    <!--<div id="mainLogo" style="position:absolute; right:70px; bottom:50px;'"><img src="images/logos.png"/></div>-->
+    <!-- This one is for paying sounds -->
+    <span id="mainDummy" style="visibility:hidden" width="0" height="0"></span>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+@font-face { font-family:lcarsgtj3; src:local(LCARSGTJ3 Standard) format(TrueType); }
+
+.trk_orange { color:#ff9900; }
+.trk_flieder { color:#cc99cc; }
+.trk_blaugrau { color:#9999cc; }
+.trk_rotbraun { color:#cc6666; }
+.trk_beige { color:#ffcc99; }
+.trk_leuchtblau { color:#9999ff; }
+.trk_apricot { color:#ff9966; }
+.trk_pink { color:#cc6699; }
+.trk_hellorange { color:#f7c64a; }
+.trk_rot { color:#ff0000; }
+.trk_hellgrau { color:#cccccc; }
+.trk_black { color:#000000; }
+
+.trkbg_orange { background-color:#ff9900; }
+.trkbg_flieder { background-color:#cc99cc; }
+.trkbg_blaugrau { background-color:#9999cc; }
+.trkbg_rotbraun { background-color:#cc6666; }
+.trkbg_beige { background-color:#ffcc99; }
+.trkbg_leuchtblau { background-color:#9999ff; }
+.trkbg_apricot { background-color:#ff9966; }
+.trkbg_pink { background-color:#cc6699; }
+.trkbg_hellorange { background-color:#f7c64a; }
+.trkbg_rot { background-color:#ff0000; }
+.trkbg_hellgrau { background-color:#cccccc; }
+.trkbg_black { background-color:#000000; }
+
+.menu { background-color:#f7c64a; }
+.menu_fld { background-color:#cc99cc; }
+
+body { 
+  background-color:#000000;
+  color:#ffffff;  
+}
+
+table {
+  layout:fixed;
+}
+
