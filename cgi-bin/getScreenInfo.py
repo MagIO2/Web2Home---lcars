@@ -7,7 +7,7 @@ screens = {
   'login': {
     'name'       : 'login',
     'layout'     : 'Layout_001',
-    'scheme'     : 'hometrek_style1.css',
+    'css'        : 'hometrek_0001,ht0001',
     'timeline'   : 'true',
     'headline'   : 'MAGIO2 LCARS - LOGIN SCREEN',
     'hlwidth'    : '320px',
@@ -25,11 +25,12 @@ screens = {
     'success'    : 'true',
     'name'       : 'main',
     'layout'     : 'Layout_001',
+    'css'        : 'hometrek_0001,ht0001',
     'timeline'   : 'true',
     'headline'   : 'MAGIO2 LCARS',
     'hlcolor'    : 'trk_hellgrau',
-    'menu'       : 'Status,Power,Heat,Security,Remote',
-    'onclick'    : 'buildScreen( "jsonResponse.contentStatus","mainContent" );/buildScreen( "jsonResponse.contentPower","mainContent" );/buildScreen( "jsonResponse.contentHeat","mainContent" );/buildScreen( "jsonResponse.contentSecurity","mainContent" );/buildScreen( "jsonResponse.contentRemote","mainContent" );',    
+    'menu'       : 'Status,Power,Heat,Security,Remote,Music',
+    'onclick'    : 'buildScreen( "jsonResponse.contentStatus","mainContent" );/buildScreen( "jsonResponse.contentPower","mainContent" );/buildScreen( "jsonResponse.contentHeat","mainContent" );/buildScreen( "jsonResponse.contentSecurity","mainContent" );/buildScreen( "jsonResponse.contentRemote","mainContent" );/buildScreen( "jsonResponse.contentMusic","mainContent" );',    
     'defContent' : 'Status',
     'contentStatus' : {
       'name'        : 'screen',
@@ -70,6 +71,13 @@ screens = {
       'hlcolor'  : 'trk_hellgrau',
       'layout'   : 'Layout_002',
       'menu'     : 'Timer,Devices,Makros'
+    },
+    'contentMusic' : {
+      'name'     : 'screen',
+      'headline' : 'Music',
+      'hlcolor'  : 'trk_hellgrau',
+      'layout'   : 'Layout_002',
+      'menu'     : 'Radio,MP3'
     }
 	}
 };

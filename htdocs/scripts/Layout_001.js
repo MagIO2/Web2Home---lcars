@@ -2,6 +2,11 @@ function Layout_001() {
   this.createLayout = createLayout;
   function createLayout( data, container ) {
     var response = eval( data );
+    var cssPrefix="";
+    // get the css prefix to be used
+    if( response.css ) {
+      cssPrefix=response.css.split( "," )[1];
+    }      
     /*
      * Layout1 contains a top-line containing a headline, an optional line showing the time/date, a content-area and a bottom-line with a menu
      */
@@ -18,8 +23,9 @@ function Layout_001() {
     row.append("<td width=\"34px\" height=\"33px\"><img src=\"images/kopf_34_links_orange.png\"/></td>");
     var wdth=response.hlwidth;
     if( !wdth ) { wdth="150px"; }
-    row.append("<td width=\""+wdth+"\" align=\"center\" height=\"34px\"><div style=\"width:"+wdth+"; height:34px;\">"+
-               "<font face=\"lcarsgtj3,Arial\" class=\""+response.hlcolor+"\" size=\"6\">"+response.headline+"</font></div></td>");
+    row.append("<td width=\""+wdth+"\" align=\"center\" height=\"34px\">"+
+               "<div class=\""+cssPrefix+"_title\">"+response.headline+"</div></td>");
+    //           "<font face=\"lcarsgtj3,Arial\" class=\""+cssPrefix+"_title\" size=\"6\">"+response.headline+"</font></div></td>");
     row.append("<td class=\"trkbg_hellorange\" width=\"*\" height=\"34px\">&nbsp;</td>");
     row.append("<td class=\"trkbg_hellorange\" width=\"*\" height=\"34px\">&nbsp;</td>");
     row.append("<td width=\"4px\" height=\"34px\">&nbsp;</td>");
@@ -41,7 +47,7 @@ function Layout_001() {
       table.append("<tr id=\""+response.name+"Row4\"><tr>");
       var row=$('#'+response.name+'Row4');
       row.append("<td id=\""+response.name+"Menu\" colspan=\"6\" height=\"33px\"></td>");
-      addMenuEntries( response.name, response.menu, response.onclick );
+      addMenuEntries( response.name, response.menu, response.onclick, cssPrefix );
     }
 
     if( response.defContent ) {
@@ -50,7 +56,7 @@ function Layout_001() {
   }
 }
 
-  function addMenuEntries( container, menuentries, clickentries ) {
+  function addMenuEntries( container, menuentries, clickentries, prefix ) {
     var mEntries=menuentries.split(",");
     var cEntries=clickentries.split("/");
     
@@ -62,13 +68,13 @@ function Layout_001() {
     mRow.append("<td width=\"34px\" height=\"33px\"><img src=\"images/kopf_34_links_orange.png\"/></td>");
     var i;
     for( i=0; i<mEntries.length; i++) {
-      mRow.append( "<td id=\"menu"+mEntries[i]+"\" class=\"menu\" height=\"33px\" width=\"120\"><font face=\"lcarsgtj3,Arial\" class=\"trk_black\" size=\"5\">&nbsp;"+mEntries[i]+"</font></td>" );
+      mRow.append( "<td id=\"menu"+mEntries[i]+"\" class=\""+prefix+"_menu_back\" height=\"33px\" width=\"120\"><font face=\"lcarsgtj3,Arial\" class=\"trk_black\" size=\"5\">&nbsp;"+mEntries[i]+"</font></td>" );
       menuScripts[ "menu"+mEntries[i] ]=cEntries[i];
     }
-    mRow.append( "<td class=\"trkbg_hellorange\" height=\"33px\" width=\"*\"></td>" );
+    mRow.append( "<td class=\""+prefix+"_menu_back\" height=\"33px\" width=\"*\"></td>" );
     mRow.append( "<td width=\"34px\"><img src=\"images/kopf_34_rechts_orange.png\"/></td>" );
     
-    activateMenu("menu", "#ff9900", "#f7c64a");
+    activateMenu( prefix+"_menu_back", "#ff9900", "#f7c64a");
   }
 
   function startTimer( container ) {

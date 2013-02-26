@@ -2,6 +2,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
     <title>MagIO2 LCARS</title>
+    <link rel="stylesheet" type="text/css" href="css/hometrek_base.css" />
     <script type="text/javascript" src="scripts/jquery-1.9.1.js"></script>
     <script type="text/javascript">
   // onload in jquery
@@ -27,9 +28,22 @@
   }
   
   var layouts=new Array();
+  var stylesheets=new Array();
   // respname is a string of the subtree of the response to be processed - this allows recursive build
 	function buildScreen( respname, container ) {
     var response = eval( respname );
+    
+    // are stylesheet parameters given?
+    if( response.css ) {
+      // then split the parameters [0] = name of CSS-file, [1] = prefix used in all classes defined in the CSS
+      var cssPar=response.css.split( "," ); 
+      // is the CSS already loaded, or does it have to be loaded
+      if( !stylesheets[ cssPar[0] ] ) {
+        $('head').append('<link rel="stylesheet" href="css/'+cssPar[0]+'.css" type="text/css" />');
+        stylesheets[ response.css ] = true;
+      }
+    }
+    
     // has the layout already been loaded?
     if( !layouts[ response.layout ] ) {
       // no, so load it and create an instance of the layout to call the createLayout-function
@@ -76,14 +90,14 @@
     $("#mainDummy").append("<embed id=\"snd\" src=\""+soundfile+"\" hidden=\"true\" autostart=\"true\" loop=\"false\" width=1 height=1/>");
 	}
     </script>
-
-    <link rel="stylesheet" type="text/css" href="css/hometrek_style1.css" />
   </head>
   <body class="trk_body">
     <!-- This is the container for the screen "painted" by script -->
+    <div style="width:1280px; height:800px;">
     <table style="table-layout:fixed;" width="100%" height="99%" cellpadding="0" cellspacing="0" border="0">
       <tr><td id="mainContainer" class="mainText" height="100%" width="100%">This page you'd better enjoy with JavaScript enabled :o)</td></tr>
     </table>
+    </div>
     <!--<div id="mainLogo" style="position:absolute; right:70px; bottom:50px;'"><img src="images/logos.png"/></div>-->
     <!-- This one is for paying sounds -->
     <span id="mainDummy" style="visibility:hidden" width="0" height="0"></span>

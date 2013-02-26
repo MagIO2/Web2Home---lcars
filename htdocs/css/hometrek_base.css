@@ -1,5 +1,14 @@
 @font-face { font-family:lcarsgtj3; src:local(LCARSGTJ3 Standard) format(TrueType); }
 
+body { 
+  background-color:#000000;
+  color:#ffffff;  
+}
+
+table {
+  layout:fixed;
+}
+
 .trk_orange { color:#ff9900; }
 .trk_flieder { color:#cc99cc; }
 .trk_blaugrau { color:#9999cc; }
@@ -25,16 +34,3 @@
 .trkbg_rot { background-color:#ff0000; }
 .trkbg_hellgrau { background-color:#cccccc; }
 .trkbg_black { background-color:#000000; }
-
-.menu { background-color:#f7c64a; }
-.menu_fld { background-color:#cc99cc; }
-
-body { 
-  background-color:#000000;
-  color:#ffffff;  
-}
-
-table {
-  layout:fixed;
-}
-
