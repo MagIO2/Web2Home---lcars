@@ -34,9 +34,10 @@ screens = {
     'defContent' : 'Status',
     'contentStatus' : {
       'name'        : 'screen',
+      'layout'      : 'Layout_002',
+      'css'         : 'hometrek_0002,ht0002',
       'headline'    : 'Status',
       'hlcolor'     : 'trk_hellgrau',
-      'layout'      : 'Layout_002',
       'menu'        : 'Power,Heat,Security',
       'onclick'     : '',
       'defContent1' : 'House3D',
@@ -46,37 +47,42 @@ screens = {
     },
     'contentPower' : {
       'name'     : 'screen',
+      'layout'   : 'Layout_002',
+      'css'      : 'hometrek_0002,ht0002',
       'headline' : 'Power',
       'hlcolor'  : 'trk_hellgrau',
-      'layout'   : 'Layout_002',
       'menu'     : 'Timer,Devices,Commands,Makros'
     },
     'contentHeat' : {
       'name'     : 'screen',
+      'layout'   : 'Layout_002',
+      'css'      : 'hometrek_0002,ht0002',
       'headline' : 'Heat',
       'hlcolor'  : 'trk_hellgrau',
-      'layout'   : 'Layout_002',
       'menu'     : 'Timer,Devices'
     },
     'contentSecurity' : {
       'name'     : 'screen',
+      'layout'   : 'Layout_002',
+      'css'      : 'hometrek_0002,ht0002',
       'headline' : 'Security',
       'hlcolor'  : 'trk_hellgrau',
-      'layout'   : 'Layout_002',
       'menu'     : 'Cams,Sensors'
     },
     'contentRemote' : {
       'name'     : 'screen',
+      'layout'   : 'Layout_002',
+      'css'      : 'hometrek_0002,ht0002',
       'headline' : 'Remote',
       'hlcolor'  : 'trk_hellgrau',
-      'layout'   : 'Layout_002',
       'menu'     : 'Timer,Devices,Makros'
     },
     'contentMusic' : {
       'name'     : 'screen',
+      'layout'   : 'Layout_002',
+      'css'      : 'hometrek_0002,ht0002',
       'headline' : 'Music',
       'hlcolor'  : 'trk_hellgrau',
-      'layout'   : 'Layout_002',
       'menu'     : 'Radio,MP3'
     }
 	}

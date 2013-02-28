@@ -6,8 +6,15 @@ body {
 }
 
 table {
-  layout:fixed;
+  table-layout:fixed;
+  border-spacing:0px;
+  padding:0px;
+  border:0px;
+  width:100%;
+  height:100%;
 }
+
+._menu_back { background-color:#f7c64a; }
 
 .trk_orange { color:#ff9900; }
 .trk_flieder { color:#cc99cc; }
