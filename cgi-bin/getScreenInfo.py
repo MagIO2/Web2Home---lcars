@@ -31,7 +31,7 @@ screens = {
     'hlcolor'    : 'trk_hellgrau',
     'menu'       : 'Status,Power,Heat,Security,Remote,Music',
     'onclick'    : 'buildScreen( "jsonResponse.contentStatus","mainContent" );/buildScreen( "jsonResponse.contentPower","mainContent" );/buildScreen( "jsonResponse.contentHeat","mainContent" );/buildScreen( "jsonResponse.contentSecurity","mainContent" );/buildScreen( "jsonResponse.contentRemote","mainContent" );/buildScreen( "jsonResponse.contentMusic","mainContent" );',    
-    'defContent' : 'Status',
+    'defContent' : 'Power',
     'contentStatus' : {
       'name'        : 'screen',
       'layout'      : 'Layout_002',
@@ -46,12 +46,42 @@ screens = {
       }
     },
     'contentPower' : {
-      'name'     : 'screen',
-      'layout'   : 'Layout_002',
-      'css'      : 'hometrek_0002,ht0002',
-      'headline' : 'Power',
-      'hlcolor'  : 'trk_hellgrau',
-      'menu'     : 'Timer,Devices,Commands,Makros'
+      'name'       : 'screen',
+      'layout'     : 'Layout_002',
+      'css'        : 'hometrek_0002,ht0002',
+      'headline'   : 'Power',
+      'hlcolor'    : 'trk_hellgrau',
+      'menu'       : 'Timer,Devices,Commands,Makros',
+      'defContent2': 'Tmr',
+      'contentTmr' : {
+        'name'        : 'Timer',
+        'layout'      : 'Layout_003',
+        'css'         : 'hometrek_0003,ht0003',
+        'headline'    : 'Timer',
+        'menu2'       : 'Makros,Commands',
+        'menu2_hover' : '#f7c64a',
+        'defContent1' : 'TimerControl',
+        'defContent2' : 'TimerList',
+        'defContent3' : 'MakroList',
+        'contentTimerControl' : {
+          'name'     : 'tmrCntrl',
+          'layout'   : 'TimerControl',
+          'css'      : 'hometrek_0004,ht0004',
+          'headline' : 'Timer Control'
+        },
+        'contentTimerList' : {
+          'name'     : 'tmrList',
+          'layout'   : 'TimerList',
+          'css'      : 'hometrek_0004,ht0004',
+          'headline' : 'Timer List'
+        },
+        'contentMakroList' : {
+          'name'     : 'mkrList',
+          'layout'   : 'MakroList',
+          'css'      : 'hometrek_0004,ht0004',
+          'headline' : 'Makro List'
+        }
+      }
     },
     'contentHeat' : {
       'name'     : 'screen',
@@ -91,4 +121,4 @@ screens = {
 fs = cgi.FieldStorage()
 
 print "Content-type: application/json\n\n"
-print json.dumps( screens[ fs.getvalue("page","login") ] )
+print json.dumps( screens[ fs.getvalue("page","main") ] )

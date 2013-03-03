@@ -9,7 +9,7 @@
   $(document).ready( function() {
     // remove the warning fast
     $("#mainContainer").html("");
-    getScreen( "login" );
+    getScreen( "main" );
   });
   
 	/*
@@ -31,6 +31,7 @@
   var stylesheets=new Array();
   // respname is a string of the subtree of the response to be processed - this allows recursive build
 	function buildScreen( respname, container ) {
+    //alert( respname+"\n"+container );
     var response = eval( respname );
     
     // are stylesheet parameters given?
@@ -49,7 +50,7 @@
       // no, so load it and create an instance of the layout to call the createLayout-function
       $.getScript( "scripts/"+response.layout+".js", function() {
         layouts[ response.layout ] = eval( "new "+response.layout+"();" );
-        // !don't move to the else!
+        // !don't move, it needs to be in this function!
         layouts[ response.layout ].createLayout(respname, container);
       });
     } else {
@@ -68,8 +69,36 @@
       $('#mainStatus').html( "<font face=\"lcarsgtj3,Arial\" class=\"trk_leuchtblau\" size=\"5\">"+which+"</font>" );
     }
   }
+
+  function addVerticalMenu(containerName, response, menu, action, idx, cssPrefix ) {  
+    // add the menu
+    var container=$("#"+containerName);
+
+    if( menu ) {
+      var theId = response.name+"_"+idx+"_Entries";
+
+      container.append("<table id=\""+theId+"\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" height=\"100%\"></table>");
+
+      var cont=$("#"+theId); 
+      cont.append( "<tr class=\""+cssPrefix+"_back"+idx+"\"><td height=\"34px\"></td></tr>"+
+                   "<tr><td height=\"4px\"></td></tr></table>");
+      var mEntries=menu.split(",");
+      var i;
+      for( i=0; i<mEntries.length; i++) {
+        cont.append( "<tr><td id=\""+cssPrefix+"_entry_"+i+"_"+idx+"\" class=\""+cssPrefix+"_menu_back"+idx+"\" height=\"34px\" valign=\"middle\"><div class=\""+cssPrefix+"_menu_text"+idx+"\">&nbsp;"+mEntries[i]+"</div></td></tr>"+
+                          "<tr><td height=\"4px\"></td></tr>");
+      }
+      cont.append( "<tr class=\""+cssPrefix+"_back"+idx+"\" height=\"*\"><td width=\"100\"></td></tr>");
+
+      activateMenu(cssPrefix+"_menu_back"+idx, eval( "response.menu"+idx+"_hover") , $("#"+cssPrefix+"_entry_0_"+idx).css("background-color") );
+    } else {
+      container.append("<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" height=\"100%\">"+
+                       "<tr class=\""+cssPrefix+"_back"+idx+"\"><td height=\"100%\"></td></tr>"+
+                       "</table>");
+    }
+  }
   
-	function activateMenu(theclass, actColor, inactColor) {
+  function activateMenu(theclass, actColor, inactColor) {
 	  $("."+theclass ).mouseover(function (event) {
       $(this).css("background-color",actColor);
 	    //if( event.target.id.substring(0,4) == "menu" ) {
@@ -93,13 +122,14 @@
   </head>
   <body class="trk_body">
     <!-- This is the container for the screen "painted" by script -->
-    <div style="width:1280px; height:800px;">
-    <table style="table-layout:fixed;" width="100%" height="99%" cellpadding="0" cellspacing="0" border="0">
+    <div style="width:99%; height:99%;"> <!-- 1280px; height:800px;"> -->
+    <!-- <table style="table-layout:fixed;" width="100%" height="99%" cellpadding="0" cellspacing="0" border="0"> -->
+    <table height="99%" width="99%">
       <tr><td id="mainContainer" class="mainText" height="100%" width="100%">This page you'd better enjoy with JavaScript enabled :o)</td></tr>
     </table>
+    <span id="mainDummy" style="visibility:hidden" width="0" height="0"></span>
     </div>
     <!--<div id="mainLogo" style="position:absolute; right:70px; bottom:50px;'"><img src="images/logos.png"/></div>-->
     <!-- This one is for paying sounds -->
-    <span id="mainDummy" style="visibility:hidden" width="0" height="0"></span>
   </body>
 </html>

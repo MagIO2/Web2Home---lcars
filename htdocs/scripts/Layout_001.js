@@ -59,7 +59,7 @@ function Layout_001() {
     }
 
     if( response.defContent ) {
-      buildScreen( "jsonResponse.content"+response.defContent, response.name+"Content" );
+      buildScreen( data+".content"+response.defContent, response.name+"Content" );
     }
   }
 }

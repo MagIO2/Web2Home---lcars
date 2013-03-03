@@ -24,14 +24,14 @@ function Layout_002() {
                         "<td id=\""+response.name+"Cont2\" class=\""+cssPrefix+"_content2\" width=\"*\" height=\"*\"></td>"+
                       "</tr>"+
                       "<tr>"+
-                        "<td colspan=\"3\" height=\"34px\">"+
+                        "<td colspan=\"3\" height=\"16px\">"+
                           "<table cellspacing=\"0\" cellpadding=\"0\"><tr>"+
-                            "<td width=\"34px\"><button class=\""+cssPrefix+"_back\" style=\"width:34px; height:34px; border-width:0px; border-top-left-radius:17px; border-bottom-left-radius:17px;\" />"+
+                            "<td width=\"34px\"><button class=\""+cssPrefix+"_back\" style=\"width:34px; height:16px; border-width:0px; border-top-left-radius:8px; border-bottom-left-radius:8px;\" />"+
                             "</td><td width=\"4px\"></td><td class=\""+cssPrefix+"_back\" width=\"*\"></td><td width=\"50px\">"+
-                            "<button class=\""+cssPrefix+"_back\" style=\"width:50px; height:34px; border-width:0px; border-bottom-right-radius:34px;\" /></td></tr></table>"+
+                            "<button class=\""+cssPrefix+"_back\" style=\"width:50px; height:16px; border-width:0px; border-bottom-right-radius:16px;\" /></td></tr></table>"+
                         "</td>"+
-                        "<td width=\"10px\" height=\"34px\"></td>"+
-                        "<td id=\""+response.name+"ContHead2\" height=\"34px\"></td>"+
+                        "<td width=\"10px\" height=\"16px\"></td>"+
+                        "<td id=\""+response.name+"ContHead2\" height=\"16px\"></td>"+
                       "</tr>"+
                       "<tr><td colspan=\"5\" height=\"4px\"></td></tr>"+
                       "</table>" 
@@ -59,11 +59,19 @@ function Layout_002() {
     var mEntries=response.menu.split(",");
     var i;
     for( i=0; i<mEntries.length; i++) {
-      container.append( "<tr class=\""+cssPrefix+"_back\"><td id=\"menuSub"+mEntries[i]+"\" class=\"menu_fld\" height=\"34px\"><div class=\""+cssPrefix+"_menu_text\">&nbsp;"+mEntries[i]+"</div></td></tr>"+
+      container.append( "<tr><td id=\"menuSub"+mEntries[i]+"\" class=\""+cssPrefix+"_menu_back\" height=\"34px\" valign=\"bottom\"><div class=\""+cssPrefix+"_menu_text\" style=\"height:34px;\">&nbsp;"+mEntries[i]+"</div></td></tr>"+
                         "<tr><td height=\"4px\"></td></tr>");
     }
     container.append( "<tr class=\""+cssPrefix+"_back\" height=\"*\"><td width=\"100\">&nbsp;</td></tr>");
     
-    activateMenu("menu_fld", "#cc99cc", "#9999cc");
+    activateMenu(cssPrefix+"_menu_back", "#cc99cc", "#9999cc");
+    
+    if( response.defContent1 ) {
+      buildScreen( data+".content"+response.defContent1, response.name+"Cont1" );
+    }
+
+    if( response.defContent2 ) {
+      buildScreen( data+".content"+response.defContent2, response.name+"Cont2" );
+    }
   }
 }
