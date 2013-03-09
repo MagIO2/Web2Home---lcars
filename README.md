@@ -1,5 +1,5 @@
-lcars
-=====
+Web2Home - LCARS
+================
 
 This is a Web-based interface for a home selfmade automation currently with LCARS-like look and feel using python, json, jquery, html, css 
 
