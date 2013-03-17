@@ -41,7 +41,11 @@ To run the framework itself you need:
 
 The webserver needs to be setup in a way that it accepts *.py as CGI-scripts.
 
-My setup includes:
+My target setup includes:
 * a raspberry pi which runs THTTPD
 * a propeller board which runs the home automation system ( if there is interest, I could start a new repository whith all sources of that)
 * a laptop (as client and development environment)
+
+When moving the project to the raspberry you have to be carefull:
+1. The *.py scripts need to be transferred in text-mode. If transferred binary, the python interpreter won't start em!
+2. The *.py scripts need to point to the right python binary (#!D:\bla\python vs. #!/usr/bin/python)
