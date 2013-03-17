@@ -26,6 +26,26 @@
       success : function (response) { jsonResponse = response; buildScreen( "jsonResponse","mainContainer" ) }
     });
   }
+
+	function propCommand( cmd, cb, user, pwd ) {
+    $.ajax({
+      url: "/cgi-bin/PropCommand.py",
+      type: "post",
+      data: {'user':user, 'pass':pwd, 'session':session, 'cmd':cmd } ,
+      dataType: "json",
+      success : function (response) { cb.updateContent( response ); }
+    });
+  }
+  
+	function mpdCommand( cmd, cb, user, pwd ) {
+    $.ajax({
+      url: "/cgi-bin/mpdCommand.py",
+      type: "post",
+      data: {'user':user, 'pass':pwd, 'session':session, 'cmd':cmd } ,
+      dataType: "json",
+      success : function (response) { cb.updateContent( response ); }
+    });
+  }
   
   var layouts=new Array();
   var stylesheets=new Array();
@@ -83,10 +103,19 @@
       cont.append( "<tr class=\""+cssPrefix+"_back"+idx+"\"><td height=\"34px\"></td></tr>"+
                    "<tr><td height=\"4px\"></td></tr></table>");
       var mEntries=menu.split(",");
+      var cEntries;
+      if( action )
+      {
+        cEntries=action.split("/");
+      }
+      
       var i;
       for( i=0; i<mEntries.length; i++) {
         cont.append( "<tr><td id=\""+cssPrefix+"_entry_"+i+"_"+idx+"\" class=\""+cssPrefix+"_menu_back"+idx+"\" height=\"34px\" valign=\"middle\"><div class=\""+cssPrefix+"_menu_text"+idx+"\">&nbsp;"+mEntries[i]+"</div></td></tr>"+
                           "<tr><td height=\"4px\"></td></tr>");
+        if( cEntries && cEntries[i] ) {
+          menuScripts[ cssPrefix+"_entry_"+i+"_"+idx ]=cEntries[i];
+        }
       }
       cont.append( "<tr class=\""+cssPrefix+"_back"+idx+"\" height=\"*\"><td width=\"100\"></td></tr>");
 

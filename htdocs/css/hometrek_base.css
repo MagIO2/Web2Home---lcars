@@ -5,6 +5,11 @@ body {
   color:#ffffff;  
 }
 
+td {
+  font-family:lcarsgtj3;
+  font-size:20px;
+}
+
 table {
   table-layout:fixed;
   border-spacing:0px;

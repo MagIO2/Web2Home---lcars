@@ -67,7 +67,10 @@ function Layout_001() {
   function addMenuEntries( container, menuentries, clickentries, prefix ) {
     if( menuentries.length>0 ) {
       var mEntries=menuentries.split(",");
-      var cEntries=clickentries.split("/");
+      var cEntries;
+      if( clickentries ) {
+        cEntries=clickentries.split("/");
+      }
       
       var mCont=$("#"+container+"Menu");
       mCont.html("");
@@ -80,7 +83,9 @@ function Layout_001() {
       for( i=0; i<mEntries.length; i++) {
         mRow.append( "<td id=\"menu"+mEntries[i]+"\" class=\""+prefix+"_menu_back\" height=\"34px\" width=\"120\"><div class=\""+prefix+"_menu_text\">&nbsp;"+mEntries[i]+"</div></td>" );
         mRow.append("<td width=\"4px\" height=\"34px\"></td>");
-        menuScripts[ "menu"+mEntries[i] ]=cEntries[i];
+        if( cEntries && cEntries[i] ) {
+          menuScripts[ "menu"+mEntries[i] ]=cEntries[i];
+        }
       }
       mRow.append( "<td class=\""+prefix+"_back\" height=\"34px\" width=\"*\"></td>" );
       mRow.append("<td width=\"4px\" height=\"34px\"></td>");

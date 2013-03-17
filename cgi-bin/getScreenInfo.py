@@ -31,7 +31,7 @@ screens = {
     'hlcolor'    : 'trk_hellgrau',
     'menu'       : 'Status,Power,Heat,Security,Remote,Music',
     'onclick'    : 'buildScreen( "jsonResponse.contentStatus","mainContent" );/buildScreen( "jsonResponse.contentPower","mainContent" );/buildScreen( "jsonResponse.contentHeat","mainContent" );/buildScreen( "jsonResponse.contentSecurity","mainContent" );/buildScreen( "jsonResponse.contentRemote","mainContent" );/buildScreen( "jsonResponse.contentMusic","mainContent" );',    
-    'defContent' : 'Power',
+    'defContent' : 'Music',
     'contentStatus' : {
       'name'        : 'screen',
       'layout'      : 'Layout_002',
@@ -51,18 +51,20 @@ screens = {
       'css'        : 'hometrek_0002,ht0002',
       'headline'   : 'Power',
       'hlcolor'    : 'trk_hellgrau',
-      'menu'       : 'Timer,Devices,Commands,Makros',
+      'menu'       : 'Timer,Times,Devices,Commands,Makros',
+      'onclick'    : 'buildScreen("jsonResponse.contentPower.contentTmr","screenCont2");/buildScreen("jsonResponse.contentPower.contentTm","screenCont2");/buildScreen("jsonResponse.contentPower.contentDev","screenCont2");/buildScreen("jsonResponse.contentPower.contentCmd","screenCont2");/buildScreen("jsonResponse.contentMkr.contentDev","screenCont2");',
       'defContent2': 'Tmr',
       'contentTmr' : {
         'name'        : 'Timer',
         'layout'      : 'Layout_003',
         'css'         : 'hometrek_0003,ht0003',
         'headline'    : 'Timer',
-        'menu2'       : 'Makros,Commands',
-        'menu2_hover' : '#f7c64a',
+        'menu'        : 'Makros,Commands',
+        'onclick'     : 'buildScreen("jsonResponse.contentPower.contentTmr.contentMakroList","TimerCont2");/buildScreen("jsonResponse.contentPower.contentTmr.contentCommandList","TimerCont2");',
+        'menu_hover'  : '#ff9966',
         'defContent1' : 'TimerControl',
-        'defContent2' : 'TimerList',
-        'defContent3' : 'MakroList',
+        'defContent2' : 'MakroList',
+        'defContent3' : 'TimerList',
         'contentTimerControl' : {
           'name'     : 'tmrCntrl',
           'layout'   : 'TimerControl',
@@ -80,7 +82,28 @@ screens = {
           'layout'   : 'MakroList',
           'css'      : 'hometrek_0004,ht0004',
           'headline' : 'Makro List'
+        },
+        'contentCommandList' : {
+          'name'     : 'cmdList',
+          'layout'   : 'CommandList',
+          'css'      : 'hometrek_0004,ht0004',
+          'headline' : 'Command List'
         }
+      },
+      'contentDev' : {
+        'name'        : 'Devices',
+        'layout'      : 'Layout_003',
+        'css'         : 'hometrek_0003,ht0003'
+      },
+      'contentDev' : {
+        'name'        : 'Commands',
+        'layout'      : 'Layout_003',
+        'css'         : 'hometrek_0003,ht0003'
+      },
+      'contentDev' : {
+        'name'        : 'Makros',
+        'layout'      : 'Layout_003',
+        'css'         : 'hometrek_0003,ht0003'
       }
     },
     'contentHeat' : {
@@ -108,12 +131,40 @@ screens = {
       'menu'     : 'Timer,Devices,Makros'
     },
     'contentMusic' : {
-      'name'     : 'screen',
-      'layout'   : 'Layout_002',
-      'css'      : 'hometrek_0002,ht0002',
-      'headline' : 'Music',
-      'hlcolor'  : 'trk_hellgrau',
-      'menu'     : 'Radio,MP3'
+      'name'         : 'screen',
+      'layout'       : 'Layout_002',
+      'css'          : 'hometrek_0002,ht0002',
+      'headline'     : 'Music',
+      'hlcolor'      : 'trk_hellgrau',
+      'menu'         : 'Radio,MP3',
+      'defContent2'  : 'Radio',
+      'contentRadio' : {
+        'name'        : 'Radio',
+        'layout'      : 'Layout_003',
+        'css'         : 'hometrek_0003,ht0003',
+        'headline'    : 'Radio',
+        'defContent1' : 'RadioControl',
+        'defContent2' : 'RadioList',
+        'defContent3' : 'RadioStatus',
+        'contentRadioList' : {
+          'name'     : 'rdioLst',
+          'layout'   : 'RadioPlaylist',
+          'css'      : 'hometrek_0004,ht0004',
+          'headline' : 'Radio List'
+        },
+        'contentRadioControl' : {
+          'name'     : 'rdioCntrl',
+          'layout'   : 'RadioControl',
+          'css'      : 'hometrek_0004,ht0004',
+          'headline' : 'Radio Control'
+        },
+        'contentRadioStatus' : {
+          'name'     : 'rdioStat',
+          'layout'   : 'RadioStatus',
+          'css'      : 'hometrek_0004,ht0004',
+          'headline' : 'Radio Status'
+        }
+      }
     }
 	}
 };

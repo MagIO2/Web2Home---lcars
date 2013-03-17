@@ -1,4 +1,4 @@
-function TimerList() {
+function RadioPlaylist() {
   this.createLayout = createLayout;
   this.updateContent = updateContent;
   function createLayout( data, containerName ) {
@@ -21,21 +21,25 @@ function TimerList() {
     );
     
     this.contentPanel = $("#"+response.name+"TimerList");
-    propCommand( 'tmrlist', this );
+    mpdCommand( 'listplaylist radio2', this );
   }
   
   function updateContent(resp)
   {
+    if( resp.cmd=="listplaylist radio2" ) {
       this.contentPanel.html("");
-      var lines = resp.data.split( "\r" );
+      var lines = resp.data.split( "\n" );
       var i;
       
-      for( i=2; i<lines.length-5; i++ ) {
-        var cols=lines[i].indexOf(" ");
-        var nbsp="&nbsp";
-        if( cols!=1 ) nbsp="";
+      for( i=1; i<lines.length-2; i++ ) {
+        var cols=lines[i].indexOf("?");
         
-        this.contentPanel.append( "<div class=\""+this.cssPrefix+"_data\">"+nbsp+lines[i].trim()+"</div>" );
+        var station = lines[i]
+        if( cols>-1 ) { 
+          station=lines[i].substring(cols+6);          
+        }
+        
+        this.contentPanel.append( "<div class=\""+this.cssPrefix+"_data\" id=\"station_"+(i-1)+"\">"+(i-1)+".&nbsp;"+station.trim()+"</div>" );
       }
 
    	  $("."+this.cssPrefix+"_data" ).mouseover(function (event) {
@@ -44,5 +48,10 @@ function TimerList() {
       $("."+this.cssPrefix+"_data" ).mouseout(function () {
            $(this).css("background-color","#000000");
       });
+      $("."+this.cssPrefix+"_data" ).click(function () {
+           mpdCommand( "play "+this.id.substring(8), this );
+      });
+    } else {
+    }
   }
 }

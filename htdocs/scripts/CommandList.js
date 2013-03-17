@@ -1,4 +1,4 @@
-function MakroList() {
+function CommandList() {
   this.createLayout = createLayout;
   this.updateContent = updateContent;
   this.cssPrefix="";
@@ -13,20 +13,20 @@ function MakroList() {
     var container=$('#'+containerName );
     container.html("");
     
-     container.append( "<table id=\""+response.name+"tableCont\" cellpadding=\"5px\" border=\"0\" height=\"100%\"></table>" );
+    container.append( "<table id=\""+response.name+"tableCont\" cellpadding=\"5px\" border=\"0\" height=\"100%\"></table>" );
 
     container = $("#"+response.name+"tableCont" );
     
     container.append( "<tr><td height=\"34px\"><div class=\""+this.cssPrefix+"_title\">"+response.headline+"</div></td></tr>" );
     container.append( "<tr><td><div id=\""+response.name+"ListHead\" class=\""+this.cssPrefix+"_text\">"+
       "</div></td></tr>"+
-      "<tr><td><div id=\""+response.name+"ListTail\"  style=\"font-family:Courier New; font-size:18px;\" class=\""+this.cssPrefix+"_text\">"+
+      "<tr><td><div id=\""+response.name+"ListTail\" class=\""+this.cssPrefix+"_text\">"+
       "</div></td></tr>"
     );
 
     this.contentPanel1 = $( "#"+response.name+"ListHead" );
     this.contentPanel2 = $( "#"+response.name+"ListTail" );
-    propCommand('mkrlist', this );
+    propCommand('cmdlist', this );
   }
 
   function updateContent(resp)
@@ -41,14 +41,9 @@ function MakroList() {
       this.contentPanel1.append( lines[2] );
       var i;
       for( i=3; i<lines.length-4; i++ ) {
-        var cols = lines[ i ].split( " " );
-        var entry = "<div class=\""+this.cssPrefix+"_data\" id=\"MkrListRow_"+(i-3)+"\">"+
-                    cols[0]+"&nbsp;&nbsp;"+
-                    cols[1]+"&nbsp;&nbsp;"+
-                    cols[2]+"</div>";
+        var entry = "<div class=\""+this.cssPrefix+"_data\" id=\"CmdListRow_"+(i-3)+"\">"+
+                    lines[i]+"</div>";
         this.contentPanel2.append( entry );
-        this.makroNames[ i-3 ] = cols[2];
-        this.makroHash[ i-3 ] = cols[0];
       }
    	  $("."+this.cssPrefix+"_data" ).mouseover(function (event) {
         $(this).css("background-color","#555555");

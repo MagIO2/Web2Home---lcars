@@ -57,10 +57,18 @@ function Layout_002() {
 
     container=$("#"+response.name+"Entries");                
     var mEntries=response.menu.split(",");
+    var cEntries;
+    if( response.onclick ) {
+      cEntries=response.onclick.split("/");
+    }
+
     var i;
     for( i=0; i<mEntries.length; i++) {
       container.append( "<tr><td id=\"menuSub"+mEntries[i]+"\" class=\""+cssPrefix+"_menu_back\" height=\"34px\" valign=\"bottom\"><div class=\""+cssPrefix+"_menu_text\" style=\"height:34px;\">&nbsp;"+mEntries[i]+"</div></td></tr>"+
                         "<tr><td height=\"4px\"></td></tr>");
+      if( cEntries && cEntries[i] ) {
+        menuScripts[ "menuSub"+mEntries[i] ]=cEntries[i];
+      }
     }
     container.append( "<tr class=\""+cssPrefix+"_back\" height=\"*\"><td width=\"100\">&nbsp;</td></tr>");
     

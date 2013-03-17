@@ -7,8 +7,10 @@
 .ht0004_menu_text2 { font-family:lcarsgtj3,Arial; font-size:26px; color:#441111; vertical-align:middle; height:34px; }
 
 .ht0004_title { font-family:lcarsgtj3,Arial; font-size:30px; color:#ffcc99; height:34px; }
-.ht0004_text { font-family:lcarsgtj3,Arial; font-size:24px; color:#cccccc; }
+.ht0004_text { font-family:Courier New; font-size:18px; color:#cccccc; }
 
-.ht0004_content { background-color:#222222; }
-.ht0004_content2 { background-color:#333333; }
-.ht0004_content3 { background-color:#333333; }
+.ht0004_button { background-color:#cc99cc; }
+
+.ht0004_content { background-color:#000000; }
+.ht0004_content2 { background-color:#000000; }
+.ht0004_content3 { background-color:#000000; }

@@ -10,8 +10,8 @@ function Layout_003() {
 
     var container=$('#'+container);
     container.html("");
-    container.append( "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">"+
-                      "<tr><td width=\"40%\" height=\"5px\"></td><td width=\"10px\" height=\"1px\"></td><td width=\"100px\" height=\"1px\"></td><td width=\"10px\" height=\"1px\"></td><td width=\"*\" height=\"1px\"></td></tr>"+
+    container.append( "<table style=\"table-layout:fixed;\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">"+
+                      "<tr><td width=\"40%\" height=\"5px\"></td><td width=\"10px\" height=\"5px\"></td><td width=\"100px\" height=\"5px\"></td><td width=\"10px\" height=\"5px\"></td><td width=\"*\" height=\"5px\"></td></tr>"+
                       "<tr>"+
                         "<td id=\""+response.name+"ContHead1_1\" width=\"40%\" height=\"16px\"></td>"+
                         "<td width=\"10px\" height=\"16px\"></td>"+
@@ -32,10 +32,10 @@ function Layout_003() {
                         "<td id=\""+response.name+"ContHead3_2\" colspan=\"3\" height=\"16px\"></td>"+
                       "</tr>"+
                       "</table>" 
-                    );
+    );
     
-    addVerticalMenu(response.name+"_menu1", response, response.menu, response.action, "", cssPrefix );
-    addVerticalMenu(response.name+"_menu2", response, response.menu2, response.action2, "2", cssPrefix );
+    addVerticalMenu(response.name+"_menu1", response, response.menu, response.onclick, "", cssPrefix );
+    addVerticalMenu(response.name+"_menu2", response, response.menu2, response.onclick2, "2", cssPrefix );
     
     // add the round edges in the top line
     container=$("#"+response.name+"ContHead1_2");
@@ -43,7 +43,7 @@ function Layout_003() {
     if( response.hlcolor ) {
       color = response.hlcolor;
     }
-    container.append("<table cellspacing=\"0\" cellpadding=\"0\"><tr>"+
+    container.append("<table style=\"table-layout:fixed;\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tr>"+
       "<td width=\"50px\" height=\"16px\"><button class=\""+cssPrefix+"_back\" style=\"width:50px; height:16px; border-width:0px; border-top-left-radius:16px;\" /></td>"+
       "<td width=\"*\" class=\""+cssPrefix+"_back\" height=\"16px\" colspan=\"2\"></td>"+
       "<td width=\"34px\" height=\"16px\"><button class=\""+cssPrefix+"_back\" style=\"width:34px; height:16px; border-width:0px; border-top-right-radius:8px; border-bottom-right-radius:8px;\" /></td></tr></table>");
@@ -54,7 +54,7 @@ function Layout_003() {
     if( response.hlcolor ) {
       color = response.hlcolor;
     }
-    container.append("<table cellspacing=\"0\" cellpadding=\"0\">"+
+    container.append("<table style=\"table-layout:fixed;\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">"+
       "<tr>"+
         "<td width=\"34px\" height=\"16px\"><button class=\""+cssPrefix+"_back\" style=\"width:34px; height:16px; border-width:0px; border-top-left-radius:8px; border-bottom-left-radius:8px;\" /></td>"+
         "<td width=\"*\" class=\""+cssPrefix+"_back\" height=\"16px\" colspan=\"2\"></td>"+
@@ -76,7 +76,7 @@ function Layout_003() {
     if( response.hlcolor ) {
       color = response.hlcolor;
     }
-    container.append("<table cellspacing=\"0\" cellpadding=\"0\"><tr>"+
+    container.append("<table style=\"table-layout:fixed;\" cellspacing=\"0\" cellpadding=\"0\"><tr>"+
       "<td width=\"50px\" height=\"16px\"><button class=\""+cssPrefix+"_back2\" style=\"width:50px; height:16px; border-width:0px; border-bottom-left-radius:16px;\" /></td>"+
       "<td width=\"*\" class=\""+cssPrefix+"_back2\" height=\"16px\" colspan=\"2\"></td>"+
       "<td width=\"34px\" height=\"16px\"><button class=\""+cssPrefix+"_back2\" style=\"width:34px; height:16px; border-width:0px; border-top-right-radius:8px; border-bottom-right-radius:8px;\" /></td></tr></table>");
