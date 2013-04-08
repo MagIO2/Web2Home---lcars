@@ -1,7 +1,7 @@
 Web2Home - LCARS
 ================
 
-This is a Web-based interface for a home selfmade automation currently with LCARS-like look and feel using python, json, jquery, html, css 
+This is a hardware/software project for a web-based interface for a selfmade home automation (currently with LCARS-like look and feel) using python, json, jquery, html, css, a raspberry pi and a propeller.
 
 LCARS is the "Library Computer Access/Retrieval System" which is used in Startrek universe since the next generation (http://en.wikipedia.org/wiki/LCARS).
 This project is about giving each individual interested in the LCARS UI a framework that can be used in personal projects like for example a selfmade MP3 player using the RaspberryPi or a full blown home automation system.
