@@ -4,7 +4,7 @@ import sys, json
 import cgi
 from socket import *
 
-HOST = '192.168.2.4'
+HOST = '192.168.2.5'
 PORT = 7777
 ADDR = (HOST,PORT)
 BUFSIZE = 4096
@@ -33,6 +33,7 @@ client.close()
 
 jsonData = {
   'success' : 'true',
+  'cmd'     : command,
   'data'    : data
 };
 

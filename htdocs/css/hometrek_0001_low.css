@@ -1,0 +1,16 @@
+.ht0001_height { height:16px; }
+.ht0001_back { background-color:#f7c64a; height:16px; }
+
+.ht0001_menu_back { background-color:#f7c64a; height:16px; width:80px; }
+.ht0001_menu_text { font-family:lcarsgtj3,Arial; font-size:1.4em; color:#000000; width:80px; }
+
+.ht0001_title { font-family:lcarsgtj3,Arial; font-size:1.6em; color:#cccccc; height:16px; }
+
+.ht0001_content { background-color:#003300; }
+
+.ht0001_box { width:16px; height:16px; }
+.ht0001_spacer { width:2px; height:16px; }
+.ht0001_round_l { width:16px; height:16px; background-color:#f7c64a; border-width:0px; border-top-left-radius:8px; border-bottom-left-radius:8px; }
+.ht0001_round_r { width:16px; height:16px; background-color:#f7c64a; border-width:0px; border-top-right-radius:8px; border-bottom-right-radius:8px; }
+
+.ht0001_time { font-family:lcarsgtj3,Arial; font-size:1.1em; color:#9999ff; }

@@ -8,9 +8,14 @@
   // onload in jquery
   $(document).ready( function() {
     // remove the warning fast
-    $("#mainContainer").html("");
+    var mainContainer = $("#mainContainer");
+    mainContainer.html("");
+    if( mainContainer.width() < 1200 ) { resolution = "_mid"; }
+    if( mainContainer.width() < 900 ) { resolution = "_low"; }
     getScreen( "main" );
   });
+  
+  var resolution="";
   
 	/*
    * This is for getting the configuration from the server
@@ -49,10 +54,16 @@
   
   var layouts=new Array();
   var stylesheets=new Array();
+  var allLayoutObjects=new Array();
+  
   // respname is a string of the subtree of the response to be processed - this allows recursive build
 	function buildScreen( respname, container ) {
     //alert( respname+"\n"+container );
     var response = eval( respname );
+    var name = response.name;
+    var id = response.name;
+    
+    if( response.id ) id = response.id;
     
     // are stylesheet parameters given?
     if( response.css ) {
@@ -60,31 +71,39 @@
       var cssPar=response.css.split( "," ); 
       // is the CSS already loaded, or does it have to be loaded
       if( !stylesheets[ cssPar[0] ] ) {
-        $('head').append('<link rel="stylesheet" href="css/'+cssPar[0]+'.css" type="text/css" />');
+        $('head').append('<link rel="stylesheet" href="css/'+cssPar[0]+resolution+'.css" type="text/css" />');
         stylesheets[ response.css ] = true;
       }
     }
     
     // has the layout already been loaded?
     if( !layouts[ response.layout ] ) {
+      //alert( "Loading scripts/"+response.layout+".js" );
       // no, so load it and create an instance of the layout to call the createLayout-function
       $.getScript( "scripts/"+response.layout+".js", function() {
         layouts[ response.layout ] = eval( "new "+response.layout+"();" );
         // !don't move, it needs to be in this function!
         layouts[ response.layout ].createLayout(respname, container);
+        allLayoutObjects[ id ] = layouts[ response.layout ];
       });
     } else {
-      layouts[ response.layout ].createLayout(respname, container);
+      // 
+      allLayoutObjects[ id ] = eval( "new "+response.layout+"();" );
+      allLayoutObjects[ id ].createLayout(respname, container);
     }
 	}
 
+  function update( name ) {
+    allLayoutObjects[ name ].updateLayout( arguments );
+  }
+  
   var menuRegistry = new Array();
   var menuScripts = new Array();
   
   function menuClicked( which ) {
     if( menuScripts[ which ] ) {
-      //$('#mainStatus').html( "<font face=\"lcarsgtj3,Arial\" class=\"trk_leuchtblau\" size=\"5\">"+menuScripts[ which ]+"</font>" );
-      eval( menuScripts[ which ] );
+      var call = menuScripts[ which ].trim();
+      eval( call );
     } else {
       $('#mainStatus').html( "<font face=\"lcarsgtj3,Arial\" class=\"trk_leuchtblau\" size=\"5\">"+which+"</font>" );
     }
@@ -100,8 +119,8 @@
       container.append("<table id=\""+theId+"\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\" height=\"100%\"></table>");
 
       var cont=$("#"+theId); 
-      cont.append( "<tr class=\""+cssPrefix+"_back"+idx+"\"><td height=\"34px\"></td></tr>"+
-                   "<tr><td height=\"4px\"></td></tr></table>");
+      cont.append( "<tr class=\""+cssPrefix+"_b"+idx+"\"><td class=\""+cssPrefix+"_h\"></td></tr>"+
+                   "<tr><td class=\""+cssPrefix+"_sh\"></td></tr>");
       var mEntries=menu.split(",");
       var cEntries;
       if( action )
@@ -111,31 +130,31 @@
       
       var i;
       for( i=0; i<mEntries.length; i++) {
-        cont.append( "<tr><td id=\""+cssPrefix+"_entry_"+i+"_"+idx+"\" class=\""+cssPrefix+"_menu_back"+idx+"\" height=\"34px\" valign=\"middle\"><div class=\""+cssPrefix+"_menu_text"+idx+"\">&nbsp;"+mEntries[i]+"</div></td></tr>"+
-                          "<tr><td height=\"4px\"></td></tr>");
+        cont.append( "<tr>"+
+          "<td id=\""+response.name+"_entry_"+i+"_"+idx+"\" class=\""+response.name+"_actmenu"+idx+" "+cssPrefix+"_b"+idx+" "+cssPrefix+"_h\">"+
+            "<div class=\""+cssPrefix+"_mt"+idx+"\">&nbsp;"+mEntries[i]+"</div></td></tr>"+
+          "<tr><td class=\""+cssPrefix+"_sh\"></td></tr>");
         if( cEntries && cEntries[i] ) {
-          menuScripts[ cssPrefix+"_entry_"+i+"_"+idx ]=cEntries[i];
+          menuScripts[ response.name+"_entry_"+i+"_"+idx ]=cEntries[i];
         }
       }
-      cont.append( "<tr class=\""+cssPrefix+"_back"+idx+"\" height=\"*\"><td width=\"100\"></td></tr>");
+      cont.append( "<tr class=\""+cssPrefix+"_b"+idx+"\" height=\"*\"><td></td></tr>");
 
-      activateMenu(cssPrefix+"_menu_back"+idx, eval( "response.menu"+idx+"_hover") , $("#"+cssPrefix+"_entry_0_"+idx).css("background-color") );
+      activateMenu(response.name+"_actmenu"+idx, eval( "response.menu"+idx+"_hover") , $("#"+response.name+"_entry_0_"+idx).css("background-color") );
     } else {
       container.append("<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" height=\"100%\">"+
-                       "<tr class=\""+cssPrefix+"_back"+idx+"\"><td height=\"100%\"></td></tr>"+
+                       "<tr class=\""+cssPrefix+"_b"+idx+"\"><td height=\"100%\"></td></tr>"+
                        "</table>");
     }
   }
-  
+ 
   function activateMenu(theclass, actColor, inactColor) {
 	  $("."+theclass ).mouseover(function (event) {
       $(this).css("background-color",actColor);
-	    //if( event.target.id.substring(0,4) == "menu" ) {
-		    playSound("images/210.wav");
-		  //}
+      playSound("images/210.wav");
     });
 	  $("."+theclass).mouseout(function () {
-         $(this).css("background-color",inactColor);
+      $(this).css("background-color",inactColor);
     });
 	  $("."+theclass).click(function() {
 	    playSound("images/202.wav");
@@ -151,9 +170,10 @@
   </head>
   <body class="trk_body">
     <!-- This is the container for the screen "painted" by script -->
-    <div style="width:99%; height:99%;"> <!-- 1280px; height:800px;"> -->
+    <div style="width:100%; height:100%;">
+    <!-- <div style="width:1280px; height:800px;"> -->
     <!-- <table style="table-layout:fixed;" width="100%" height="99%" cellpadding="0" cellspacing="0" border="0"> -->
-    <table height="99%" width="99%">
+    <table height="99%" width="99%" cellspacing="0" cellpadding="0" border="1">
       <tr><td id="mainContainer" class="mainText" height="100%" width="100%">This page you'd better enjoy with JavaScript enabled :o)</td></tr>
     </table>
     <span id="mainDummy" style="visibility:hidden" width="0" height="0"></span>

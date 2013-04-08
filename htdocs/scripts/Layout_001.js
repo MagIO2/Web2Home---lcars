@@ -1,3 +1,25 @@
+/*
+ * Layout1 contains a top-line with a headline, an optional line showing the time/date, a content-area and a bottom-line which might include a menu
+ * Needed/possible settings:
+ *   css: 'css-filename,css-prefix'        => this defines which CSS-file has to be loaded and the prefix which is used in that file for all CSS definitions
+ *   name: xxx                             => the name is needed to make everythin unique in case the layout is used twice in a screen
+ *   [timeline: true]                      => if the timeline shall be displayed
+ *   [headline: xxx]                       => text to be displayed as headline
+ *   [hlwidth: xxxpx]                      => defines the size of the headline (defaults to 150px)
+ *   [menu: 'm1,m2...']                    => list of menu items
+ *   [onclick: 'do1(),do2()...']           => list of functions to be called when the corresponding menu is clicked
+ *   [defContent: xxx]                     => default content to be shown in the content-panel
+ *
+ * Accessible elements (name has to be replaced with the string given as name-setting):
+ *   nameTable     =>
+ *   nameRow1      =>
+ *   nameHeadline  =>
+ *   [nameRow2]    =>
+ *   [nameStatus]  =>
+ *   nameRow3      =>
+ *   nameRow4      =>
+ *   nameMenu      =>
+ */
 function Layout_001() {
   this.createLayout = createLayout;
 
@@ -8,56 +30,62 @@ function Layout_001() {
     if( response.css ) {
       cssPrefix=response.css.split( "," )[1];
     }      
-    /*
-     * Layout1 contains a top-line containing a headline, an optional line showing the time/date, a content-area and a bottom-line with a menu
-     */
+
     var table=$('#'+container);
     table.html("");
 
-    table.append("<table cellspacing=\"0\" cellpadding=\"0\" id=\""+response.name+"Table\">"+
-                 "<tr id=\""+response.name+"Row1\" height=\"34px\"></tr></table>");
+    // create table and first row
+    table.append("<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\" id=\""+response.name+"Table\" width=\"100%\" height=\"100%\">"+
+                 "<tr id=\""+response.name+"Row1\" class=\""+cssPrefix+"_h\"></tr></table>");
     table=$('#'+response.name+"Table");
 
+    // add the cells to the first row (here we have the round edge and a spacer) 
     var row=$('#'+response.name+'Row1');
     row.html("");
-    row.append("<td width=\"34px\" height=\"34px\"><button class=\""+cssPrefix+"_back\" style=\"width:34px; height:34px; border-width:0px; border-top-left-radius:17px; border-bottom-left-radius:17px;\" /></td>");
-    row.append("<td width=\"4px\" height=\"34px\">&nbsp;</td>");
+    row.append("<td class=\""+cssPrefix+"_w "+cssPrefix+"_h\"><div class=\""+cssPrefix+"_round_l\"/></td>");
+    row.append("<td class=\""+cssPrefix+"_sw "+cssPrefix+"_h\">&nbsp;</td>");
 
-    // only do this in case a headline is defined
+    // add the headline either with text or empty
     if( response.headline ) {
       var wdth=response.hlwidth;
       if( !wdth ) { wdth="150px"; }
-      row.append("<td width=\""+wdth+"\" align=\"center\" height=\"34px\">"+
-                 "<div class=\""+cssPrefix+"_title\" style=\"height:34px;\">"+response.headline+"</div></td>");
+      row.append("<td id=\""+response.name+"Headline\" width=\""+wdth+"\" align=\"center\" class=\""+cssPrefix+"_h\">"+
+                 "<div class=\""+cssPrefix+"_title\">"+response.headline+"</div></td>");
     } else {
-      row.append("<td width=\""+wdth+"\" align=\"center\" height=\"34px\"></td>");
+      row.append("<td id=\""+response.name+"Headline\" width=\""+wdth+"\" align=\"center\" class=\""+cssPrefix+"_h\"></td>");
     }
     
-    //           "<font face=\"lcarsgtj3,Arial\" class=\""+cssPrefix+"_title\" size=\"6\">"+response.headline+"</font></div></td>");
-    row.append("<td class=\""+cssPrefix+"_back\" width=\"*\" height=\"34px\">&nbsp;</td>");
-    row.append("<td class=\""+cssPrefix+"_back\" width=\"*\" height=\"34px\">&nbsp;</td>");
-    row.append("<td width=\"4px\" height=\"34px\">&nbsp;</td>");
-    row.append("<td width=\"34px\" height=\"34px\"><button class=\""+cssPrefix+"_back\" style=\"width:34px; height:34px; border-width:0px; border-top-right-radius:17px; border-bottom-right-radius:17px;\" /></td>");
+    // add 2 cells filling the whole rest of the screen width (they should meet somewhere in the middle)
+    row.append("<td class=\""+cssPrefix+"_b "+cssPrefix+"_h\" width=\"*\">&nbsp;</td>");
+    row.append("<td class=\""+cssPrefix+"_b "+cssPrefix+"_h\" width=\"*\">&nbsp;</td>");
+    // and here is the right spacer & edge
+    row.append("<td class=\""+cssPrefix+"_sw "+cssPrefix+"_h\">&nbsp;</td>");
+    row.append("<td class=\""+cssPrefix+"_w "+cssPrefix+"_h\"><div class=\""+cssPrefix+"_round_r\" /></td>");
 
+    
+    // next row is only available if timeline is set to true
     if( response.timeline && response.timeline=='true') {
       table.append("<tr id=\""+response.name+"Row2\"></tr>");
       var row=$('#'+response.name+'Row2');
-      row.append("<td id=\""+response.name+"Status\" colspan=\"3\" height=\"34px\"></td><td height=\"34px\" align=\"right\" colspan=\"4\">"+
-                 "<font face=\"lcarsgtj3,Arial\" class=\"trk_leuchtblau\" size=\"5\">"+
-                 "<div atyle=\"align:right;\" id=\""+response.name+"Time\"></div>"+
-                 "</font></td>");
+      row.append("<td id=\""+response.name+"Status\" class=\""+cssPrefix+"_h\" colspan=\"4\"></td>"+
+                 "<td class=\""+cssPrefix+"_h\" align=\"right\" colspan=\"3\">"+
+                   "<div class=\""+cssPrefix+"_time\" id=\""+response.name+"Time\"></div>"+
+                 "</td>");
       startTimer( response.name+"Time" );
     }
 
-    table.append("<tr id=\""+response.name+"Row3\"><td id=\""+response.name+"Content\" colspan=\"7\" width=\"*\" height=\"*\">&nbsp;</td></tr>");
+    // here is the content row/cell
+    table.append("<tr id=\""+response.name+"Row3\"><td id=\""+response.name+"Content\" colspan=\"7\" width=\"*\" height=\"*\"></td></tr>");
 
+    // and here we have the bottom which contains the menu if available
+    table.append("<tr id=\""+response.name+"Row4\"><tr>");
+    var row=$('#'+response.name+'Row4');
+    row.append("<td id=\""+response.name+"Menu\" colspan=\"7\" class=\""+cssPrefix+"_h\"></td>");
     if( response.menu ) {
-      table.append("<tr id=\""+response.name+"Row4\"><tr>");
-      var row=$('#'+response.name+'Row4');
-      row.append("<td id=\""+response.name+"Menu\" colspan=\"7\" height=\"34px\"></td>");
       addMenuEntries( response.name, response.menu, response.onclick, cssPrefix );
     }
 
+    // if the config says that the content cell has to be filled, do so!
     if( response.defContent ) {
       buildScreen( data+".content"+response.defContent, response.name+"Content" );
     }
@@ -74,24 +102,24 @@ function Layout_001() {
       
       var mCont=$("#"+container+"Menu");
       mCont.html("");
-      mCont.append( "<table cellspacing=\"0\" cellpadding=\"0\"><tr id=\""+container+"MenuRow\"></tr></table>" );
+      mCont.append( "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tr id=\""+container+"MenuRow\"></tr></table>" );
       
       var mRow=$('#'+container+"MenuRow");
-      mRow.append("<td width=\"34px\" height=\"33px\"><button class=\""+prefix+"_back\" style=\"width:34px; height:34px; border-width:0px; border-top-left-radius:17px; border-bottom-left-radius:17px;\" /></td>");
-      mRow.append("<td width=\"4px\" height=\"33px\"></td>");
+      mRow.append("<td class=\""+prefix+"_w "+prefix+"_h\"><div class=\""+prefix+"_round_l\"/></td>");
+      mRow.append("<td class=\""+prefix+"_sw "+prefix+"_h\"></td>");
       var i;
       for( i=0; i<mEntries.length; i++) {
-        mRow.append( "<td id=\"menu"+mEntries[i]+"\" class=\""+prefix+"_menu_back\" height=\"34px\" width=\"120\"><div class=\""+prefix+"_menu_text\">&nbsp;"+mEntries[i]+"</div></td>" );
-        mRow.append("<td width=\"4px\" height=\"34px\"></td>");
+        mRow.append( "<td id=\""+container+"_menu_"+mEntries[i]+"\" class=\""+container+"_actmenu "+prefix+"_mw "+prefix+"_h "+prefix+"_b\"><div class=\""+prefix+"_mt "+prefix+"_mw\">&nbsp;"+mEntries[i]+"</div></td>" );
+        mRow.append("<td class=\""+prefix+"_sw "+prefix+"_h\"></td>");
         if( cEntries && cEntries[i] ) {
-          menuScripts[ "menu"+mEntries[i] ]=cEntries[i];
+          menuScripts[ container+"_menu_"+mEntries[i] ]=cEntries[i];
         }
       }
-      mRow.append( "<td class=\""+prefix+"_back\" height=\"34px\" width=\"*\"></td>" );
-      mRow.append("<td width=\"4px\" height=\"34px\"></td>");
-      mRow.append( "<td width=\"34px\"><button class=\""+prefix+"_back\" style=\"width:34px; height:34px; border-width:0px; border-top-right-radius:17px; border-bottom-right-radius:17px;\" /></td>" );
+      mRow.append( "<td class=\""+prefix+"_b "+prefix+"_h\" width=\"*\"></td>" );
+      mRow.append("<td class=\""+prefix+"_sw "+prefix+"_h\"></td>");
+      mRow.append( "<td class=\""+prefix+"_w "+prefix+"_h\"><div class=\""+prefix+"_round_r\"/></td>" );
       
-      activateMenu( prefix+"_menu_back", "#ff9900", "#f7c64a");
+      activateMenu( container+"_actmenu", "#ff9900", "#f7c64a");
     }
   }
 

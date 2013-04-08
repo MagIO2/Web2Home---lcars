@@ -1,0 +1,54 @@
+/*
+   for the whole CSS a post-fix of 2, 3 ... define additional styles and usually build a group    
+ 
+   h=height normal, 
+   w=width normal, 
+   sw=spacer width, 
+   mw=menu width, 
+   b=background,
+   rew=round edge width
+*/
+
+/* some heights */
+.ht0005_h { height:34px; }
+.ht0005_h2 { height:16px; }
+.ht0005_sh { height:4px; }
+
+/* some widths */
+.ht0005_w { width:34px; }
+.ht0005_sw { width:4px; }
+.ht0005_tsw { width:10px; }
+.ht0005_rew { width:50px; }
+.ht0005_mw { width:100px; }
+
+/* background colors for the content panels */
+.ht0005_b { background-color:#ff9966; }
+.ht0005_b2 { background-color:#cc6666; }
+.ht0005_content { background-color:#000000; }
+.ht0005_content2 { background-color:#000000; }
+.ht0005_content3 { background-color:#000000; }
+
+/* styles for menu text and title */
+.ht0005_mt { font-family:lcarsgtj3,Arial; font-size:1.4em; color:#441111; }
+.ht0005_mt2 { font-family:lcarsgtj3,Arial; font-size:1.4em; color:#441111; }
+.ht0005_title { font-family:lcarsgtj3,Arial; font-size:1.6em; color:#cccccc; }
+/* text style for the time */
+.ht0005_time { font-family:lcarsgtj3,Arial; font-size:1.1em; color:#9999ff; }
+
+.ht0005_bt { font-family:lcarsgtj3,Arial; font-size:1.1em; color:#ff9966; }
+
+/* these are for the round edges in the top and bottom bar */
+.ht0005_round_l { width:34px; height:34px; border-width:0px; border-top-left-radius:17px; border-bottom-left-radius:17px; }
+.ht0005_round_r { width:34px; height:34px; border-width:0px; border-top-right-radius:17px; border-bottom-right-radius:17px; }
+.ht0005_round2_l { width:34px; height:16px; border-width:0px; border-top-left-radius:8px; border-bottom-left-radius:8px; }
+.ht0005_round2_r { width:34px; height:16px; border-width:0px; border-top-right-radius:8px; border-bottom-right-radius:8px; }
+.ht0005_halfbround_r { width:50px; height:32px; border-width:0px; border-bottom-right-radius:32px; }
+.ht0005_halftround_l { width:50px; height:34px; border-width:0px; border-top-left-radius:34px; }
+.ht0005_halfbround2_r { width:50px; height:16px; border-width:0px; border-bottom-right-radius:16px; }
+.ht0005_halfbround2_l { width:50px; height:16px; border-width:0px; border-bottom-left-radius:16px; }
+.ht0005_halftround2_l { width:50px; height:16px; border-width:0px; border-top-left-radius:16px; }
+.ht0005_halftround2_r { width:50px; height:16px; border-width:0px; border-top-right-radius:16px; }
+.ht0005_halftround3_l { width:34px; height:16px; border-width:0px; border-top-left-radius:16px; }
+.ht0005_halftround3_r { width:34px; height:16px; border-width:0px; border-top-right-radius:16px; }
+.ht0005_halfbround3_r { width:34px; height:16px; border-width:0px; border-bottom-right-radius:16px; }
+.ht0005_halfbround3_l { width:34px; height:16px; border-width:0px; border-bottom-left-radius:16px; }

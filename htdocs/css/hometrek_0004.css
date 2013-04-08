@@ -1,3 +1,64 @@
+/*
+   for the whole CSS a post-fix of 2, 3 ... define additional styles and usually build a group    
+ 
+   h=height normal, 
+   w=width normal, 
+   sw=spacer width, 
+   mw=menu width, 
+   b=background,
+   rew=round edge width
+*/
+
+/* some heights */
+.ht0004_h { height:34px; }
+.ht0004_h2 { height:16px; }
+.ht0004_sh { height:4px; }
+
+/* some widths */
+.ht0004_w { width:34px; }
+.ht0004_sw { width:4px; }
+.ht0004_tsw { width:10px; }
+.ht0004_rew { width:50px; }
+.ht0004_mw { width:100px; }
+
+/* background colors for the content panels */
+.ht0004_b { background-color:#9999ff; }
+.ht0004_b2 { background-color:#cc99cc; }
+.ht0004_content { background-color:#000000; }
+.ht0004_content2 { background-color:#000000; }
+.ht0004_content3 { background-color:#000000; }
+
+/* styles for menu text and title */
+.ht0004_mt { font-family:lcarsgtj3,Arial; font-size:1.4em; color:#441111; }
+.ht0004_mt2 { font-family:lcarsgtj3,Arial; font-size:1.4em; color:#441111; }
+.ht0004_title { font-family:lcarsgtj3,Arial; font-size:1.6em; color:#ffcc99; }
+.ht0004_text { font-family:Arial; font-size:0.8em; color:#cccccc; }
+/* text style for the time */
+.ht0004_time { font-family:lcarsgtj3,Arial; font-size:1.1em; color:#9999ff; }
+
+/* these are for the round edges in the top and bottom bar */
+.ht0004_round_l { width:34px; height:34px; border-width:0px; border-top-left-radius:17px; border-bottom-left-radius:17px; }
+.ht0004_round_r { width:34px; height:34px; border-width:0px; border-top-right-radius:17px; border-bottom-right-radius:17px; }
+.ht0004_round2_l { width:34px; height:16px; border-width:0px; border-top-left-radius:8px; border-bottom-left-radius:8px; }
+.ht0004_round2_r { width:34px; height:16px; border-width:0px; border-top-right-radius:8px; border-bottom-right-radius:8px; }
+.ht0004_halfbround_r { width:50px; height:32px; border-width:0px; border-bottom-right-radius:32px; }
+.ht0004_halftround_l { width:50px; height:34px; border-width:0px; border-top-left-radius:34px; }
+.ht0004_halfbround2_r { width:50px; height:16px; border-width:0px; border-bottom-right-radius:16px; }
+.ht0004_halfbround2_l { width:50px; height:16px; border-width:0px; border-bottom-left-radius:16px; }
+.ht0004_halftround2_l { width:50px; height:16px; border-width:0px; border-top-left-radius:16px; }
+.ht0004_halftround2_r { width:50px; height:16px; border-width:0px; border-top-right-radius:16px; }
+.ht0004_halftround3_l { width:34px; height:16px; border-width:0px; border-top-left-radius:16px; }
+.ht0004_halftround3_r { width:34px; height:16px; border-width:0px; border-top-right-radius:16px; }
+.ht0004_halfbround3_r { width:34px; height:16px; border-width:0px; border-bottom-right-radius:16px; }
+.ht0004_halfbround3_l { width:34px; height:16px; border-width:0px; border-bottom-left-radius:16px; }
+
+.ht0004_data { color:#888888 }
+.ht0004_dataOn { color:#88ff88 }
+.ht0004_dataOff { color:#ff8888 }
+
+.ht0004_button_1 { clear:both; width:100px; height:30px; border-width:0px; margin:5px; border-top-right-radius:15px; border-bottom-right-radius:15px; border-top-left-radius:15px; border-bottom-left-radius:15px; }
+
+/*
 .ht0004_back { background-color:#9999ff; }
 .ht0004_menu_back { background-color:#9999ff; }
 .ht0004_menu_text { font-family:lcarsgtj3,Arial; font-size:26px; color:#441111; vertical-align:middle; height:34px; }
@@ -14,3 +75,8 @@
 .ht0004_content { background-color:#000000; }
 .ht0004_content2 { background-color:#000000; }
 .ht0004_content3 { background-color:#000000; }
+
+.ht0004_data { color:#888888 }
+.ht0004_dataOn { color:#88ff88 }
+.ht0004_dataOff { color:#ff8888 }
+*/

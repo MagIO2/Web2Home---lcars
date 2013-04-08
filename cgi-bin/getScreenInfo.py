@@ -22,7 +22,6 @@ screens = {
   },
   
   'main': { 
-    'success'    : 'true',
     'name'       : 'main',
     'layout'     : 'Layout_001',
     'css'        : 'hometrek_0001,ht0001',
@@ -33,29 +32,37 @@ screens = {
     'onclick'    : 'buildScreen( "jsonResponse.contentStatus","mainContent" );/buildScreen( "jsonResponse.contentPower","mainContent" );/buildScreen( "jsonResponse.contentHeat","mainContent" );/buildScreen( "jsonResponse.contentSecurity","mainContent" );/buildScreen( "jsonResponse.contentRemote","mainContent" );/buildScreen( "jsonResponse.contentMusic","mainContent" );',    
     'defContent' : 'Music',
     'contentStatus' : {
-      'name'        : 'screen',
+      'name'        : 'MasterScreen',
+      'id'          : 'StatusScreen',
       'layout'      : 'Layout_002',
       'css'         : 'hometrek_0002,ht0002',
       'headline'    : 'Status',
       'hlcolor'     : 'trk_hellgrau',
       'menu'        : 'Power,Heat,Security',
       'onclick'     : '',
-      'defContent1' : 'House3D',
+      'defContent1' : 'Split',
       'defContent2' : '',
+      'contentSplit'  : {
+        'name'        : 'SplitScreen',
+        'layout'      : 'Layout_004',
+        'css'         : 'hometrek_0001,ht0001'
+      },
       'contentPower': {
       }
     },
     'contentPower' : {
-      'name'       : 'screen',
+      'name'       : 'MasterScreen',
+      'id'         : 'PowerScreen',
       'layout'     : 'Layout_002',
       'css'        : 'hometrek_0002,ht0002',
       'headline'   : 'Power',
       'hlcolor'    : 'trk_hellgrau',
       'menu'       : 'Timer,Times,Devices,Commands,Makros',
-      'onclick'    : 'buildScreen("jsonResponse.contentPower.contentTmr","screenCont2");/buildScreen("jsonResponse.contentPower.contentTm","screenCont2");/buildScreen("jsonResponse.contentPower.contentDev","screenCont2");/buildScreen("jsonResponse.contentPower.contentCmd","screenCont2");/buildScreen("jsonResponse.contentMkr.contentDev","screenCont2");',
+      'onclick'    : 'buildScreen("jsonResponse.contentPower.contentTmr","PwrScreenCont2");/buildScreen("jsonResponse.contentPower.contentTm","PwrScreenCont2");/buildScreen("jsonResponse.contentPower.contentDev","PwrScreenCont2");/buildScreen("jsonResponse.contentPower.contentCmd","PwrScreenCont2");/buildScreen("jsonResponse.contentMkr.contentMkr","PwrScreenCont2");',
       'defContent2': 'Tmr',
       'contentTmr' : {
         'name'        : 'Timer',
+        'id'          : 'Timer',
         'layout'      : 'Layout_003',
         'css'         : 'hometrek_0003,ht0003',
         'headline'    : 'Timer',
@@ -73,41 +80,78 @@ screens = {
         },
         'contentTimerList' : {
           'name'     : 'tmrList',
+          'id'       : 'tmrList',
           'layout'   : 'TimerList',
           'css'      : 'hometrek_0004,ht0004',
           'headline' : 'Timer List'
         },
         'contentMakroList' : {
           'name'     : 'mkrList',
+          'id'       : 'mkrList',
           'layout'   : 'MakroList',
           'css'      : 'hometrek_0004,ht0004',
           'headline' : 'Makro List'
         },
         'contentCommandList' : {
           'name'     : 'cmdList',
+          'id'       : 'cmdList',
           'layout'   : 'CommandList',
           'css'      : 'hometrek_0004,ht0004',
           'headline' : 'Command List'
         }
       },
-      'contentDev' : {
+      'contentTm' : {
         'name'        : 'Devices',
+        'id'          : 'Devices',
         'layout'      : 'Layout_003',
         'css'         : 'hometrek_0003,ht0003'
       },
       'contentDev' : {
+        'name'        : 'Devices',
+        'id'          : 'Devices',
+        'layout'      : 'Layout_003',
+        'css'         : 'hometrek_0003,ht0003',
+        'headline'    : 'Devices',
+        'menu'        : 'On,Off',
+        'onclick'     : 'alert("On");/alert("Off");',
+        'menu_hover'  : '#ff9966',
+        'defContent1' : 'DeviceControl',
+        'defContent2' : 'DeviceList',
+        'defContent3' : 'DeviceBla',
+        'contentDeviceList' : {
+          'name'     : 'dvcList',
+          'id'       : 'dvcList',
+          'layout'   : 'DeviceList',
+          'css'      : 'hometrek_0004,ht0004',
+          'headline' : 'Device List'
+        },
+        'contentDeviceControl' : {
+          'name'     : 'dvcCtrl',
+          'layout'   : 'EmptyPanel',
+          'css'      : 'hometrek_0004,ht0004',
+          'headline' : 'Device Control'
+        },
+        'contentDeviceBla' : {
+          'name'     : 'dvcBla',
+          'layout'   : 'EmptyPanel',
+          'css'      : 'hometrek_0004,ht0004',
+          'headline' : 'Device Bla'
+        }
+      },
+      'contentCmd' : {
         'name'        : 'Commands',
         'layout'      : 'Layout_003',
         'css'         : 'hometrek_0003,ht0003'
       },
-      'contentDev' : {
+      'contentMkr' : {
         'name'        : 'Makros',
         'layout'      : 'Layout_003',
         'css'         : 'hometrek_0003,ht0003'
       }
     },
     'contentHeat' : {
-      'name'     : 'screen',
+      'name'     : 'MasterScreen',
+      'id'       : 'HeatScreen',
       'layout'   : 'Layout_002',
       'css'      : 'hometrek_0002,ht0002',
       'headline' : 'Heat',
@@ -115,7 +159,8 @@ screens = {
       'menu'     : 'Timer,Devices'
     },
     'contentSecurity' : {
-      'name'     : 'screen',
+      'name'     : 'MasterScreen',
+      'id'       : 'SecurityScreen',
       'layout'   : 'Layout_002',
       'css'      : 'hometrek_0002,ht0002',
       'headline' : 'Security',
@@ -123,7 +168,8 @@ screens = {
       'menu'     : 'Cams,Sensors'
     },
     'contentRemote' : {
-      'name'     : 'screen',
+      'name'     : 'MasterScreen',
+      'id'       : 'RemoteScreen',
       'layout'   : 'Layout_002',
       'css'      : 'hometrek_0002,ht0002',
       'headline' : 'Remote',
@@ -131,18 +177,53 @@ screens = {
       'menu'     : 'Timer,Devices,Makros'
     },
     'contentMusic' : {
-      'name'         : 'screen',
+      'name'         : 'MasterScreen',
+      'id'           : 'MusicScreen',
       'layout'       : 'Layout_002',
       'css'          : 'hometrek_0002,ht0002',
       'headline'     : 'Music',
       'hlcolor'      : 'trk_hellgrau',
       'menu'         : 'Radio,MP3',
+      'defContent1'  : 'Split',
       'defContent2'  : 'Radio',
+      'contentSplit' : {
+        'name'        : 'SplitScreen',
+        'layout'      : 'Layout_004',
+        'css'         : 'hometrek_0001,ht0001',
+        'defContent1' : 'Camera1',
+        'contentCamera1' : {
+          'name'        : 'Cam1',
+          'layout'      : 'Layout_005',        
+          'css'         : 'hometrek_0003,ht0003',
+          'headline'    : 'Camera 1',
+          'defContent'  : 'CamIframe',
+          'contentCamIframe' : {
+            'layout'   : 'CamIframe',
+            'source'   : 'http://www.vz.hessen.de/res/webcams/ALL/imgeschdrei.jpg',
+            'old'      : 'http://192.168.2.5:8081'
+          }
+        },
+        'defContent2' : 'Camera2',
+        'contentCamera2' : {
+          'name'        : 'Cam2',
+          'layout'      : 'Layout_005',        
+          'css'         : 'hometrek_0005,ht0005',
+          'headline'    : 'Camera 2',
+          'defContent'  : 'CamIframe',
+          'contentCamIframe' : {
+            'layout'   : 'CamIframe',
+            'source'   : 'http://www.vz.hessen.de/res/webcams/ALL/imgfriedberg.jpg'
+          }
+        }
+      },
       'contentRadio' : {
         'name'        : 'Radio',
         'layout'      : 'Layout_003',
         'css'         : 'hometrek_0003,ht0003',
         'headline'    : 'Radio',
+        'menu'        : 'User 1,User 2,User 3',
+        'menu_hover'  : '#ff9966',
+        'onclick'     : 'alert("radio1");/alert("radio2");/alert("radio3");',
         'defContent1' : 'RadioControl',
         'defContent2' : 'RadioList',
         'defContent3' : 'RadioStatus',
@@ -156,7 +237,7 @@ screens = {
           'name'     : 'rdioCntrl',
           'layout'   : 'RadioControl',
           'css'      : 'hometrek_0004,ht0004',
-          'headline' : 'Radio Control'
+          'headline' : 'Radio List Control'
         },
         'contentRadioStatus' : {
           'name'     : 'rdioStat',

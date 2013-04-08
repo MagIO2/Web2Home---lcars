@@ -4,7 +4,7 @@ import sys, json
 import cgi
 import telnetlib
 
-HOST="192.168.2.4"
+HOST="192.168.2.5"
 PORT=6600
 
 fs = cgi.FieldStorage()

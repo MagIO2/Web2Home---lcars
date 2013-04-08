@@ -1,3 +1,6 @@
+var MakroNames = new Array();
+var MakroHash = new Array();
+
 function MakroList() {
   this.createLayout = createLayout;
   this.updateContent = updateContent;
@@ -31,6 +34,9 @@ function MakroList() {
 
   function updateContent(resp)
   {
+    if( resp.cmd=="mkrlist" ) {
+      MakroNames = new Array();
+      MakroHash = new Array();
       this.contentPanel1.html( "" );
       this.contentPanel2.html( "" );
       
@@ -47,8 +53,8 @@ function MakroList() {
                     cols[1]+"&nbsp;&nbsp;"+
                     cols[2]+"</div>";
         this.contentPanel2.append( entry );
-        this.makroNames[ i-3 ] = cols[2];
-        this.makroHash[ i-3 ] = cols[0];
+        MakroNames[ i-3 ] = cols[2];
+        MakroHash[ i-3 ] = cols[0];
       }
    	  $("."+this.cssPrefix+"_data" ).mouseover(function (event) {
         $(this).css("background-color","#555555");
@@ -56,5 +62,9 @@ function MakroList() {
       $("."+this.cssPrefix+"_data" ).mouseout(function () {
            $(this).css("background-color","#000000");
       });
+      $("."+this.cssPrefix+"_data" ).click(function () {
+           propCommand( "run "+MakroNames[this.id.substring(11)], this );
+      });
+    }
   }
 }

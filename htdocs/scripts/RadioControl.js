@@ -2,44 +2,55 @@ var globalRadioControl=null;
 function RadioControl() {
   globalRadioControl=this;
   this.createLayout = createLayout;
+  this.response = null;
+  this.cssPrefix=null;
+  this.name = null;
+  this.id = null;
+  
   function createLayout( data, containerName ) {
-    var response = eval( data );
-    var cssPrefix="";
+    this.response = eval( data );
+    this.name = this.response.name;
+    this.id = this.response.name;
+    if( this.response.id ) this.id = this.response.id;
+
     // get the css prefix to be used
-    if( response.css ) {
-      cssPrefix=response.css.split( "," )[1];
+    if( this.response.css ) {
+      this.cssPrefix=this.response.css.split( "," )[1];
     }      
 
     var container=$('#'+containerName );
     container.html("");
 
-    container.append( "<table id=\""+response.name+"tableCont\" cellpadding=\"5px\" border=\"0\" height=\"100%\"></table>" );
+    container.append( "<table id=\""+this.response.id+"tableCont\" cellpadding=\"0\" cellspacing=\"0\" border=\"0\" height=\"100%\"></table>" );
 
-    container = $("#"+response.name+"tableCont" );    
-    container.append( "<tr><td vallign=\"top\" height=\"34px\"><div class=\""+cssPrefix+"_title\">"+response.headline+"</div></td></tr>" );
+    container = $("#"+this.response.id+"tableCont" );    
+    container.append( "<tr><td vallign=\"top\" class=\""+this.cssPrefix+"_h\"><div class=\""+this.cssPrefix+"_title\">"+this.response.headline+"</div></td></tr>" );
     container.append( "<tr><td align=\"center\">"+
-           "<button class=\""+cssPrefix+"_button\" style=\"font-family:lcarsgtj3,Arial; font-size:28px; width:100px; height:34px; border-width:0px; margin:5px; border-top-right-radius:17px; border-bottom-right-radius:17px; border-top-left-radius:17px; border-bottom-left-radius:17px;\" id=\"mpd_play\">Play</button>"+
-           "<button class=\""+cssPrefix+"_button\" style=\"font-family:lcarsgtj3,Arial; font-size:28px; width:100px; height:34px; border-width:0px; margin:5px; border-top-right-radius:17px; border-bottom-right-radius:17px; border-top-left-radius:17px; border-bottom-left-radius:17px;\" id=\"mpd_stop\">Stop</button>"+
+           "<button class=\""+this.cssPrefix+"_b2 "+this.cssPrefix+"_button_1 "+this.cssPrefix+"_mt\" id=\"mpd_add\">Add</button>"+
+           "<button class=\""+this.cssPrefix+"_b2 "+this.cssPrefix+"_button_1 "+this.cssPrefix+"_mt\" id=\"mpd_mod\">Modify</button>"+
+           "<button class=\""+this.cssPrefix+"_b2 "+this.cssPrefix+"_button_1 "+this.cssPrefix+"_mt\" id=\"mpd_del\">Delete</button>"+
            "</td></tr>"
     );
-    container.append( "<tr><td vallign=\"top\" height=\"*\"><table width=\"300px\" height=\"75px\"cellpadding=\"0\" cellspacing=\"0\" border=\"0\">"+
-      "<tr><td align=\"right\">Playlist position</td><td width=\"10px\" align=\"center\">:</td><td><input type=\"text\" size=\"1\" maxlength=\"1\"/></td></tr>"+
-      "<tr><td align=\"right\">Station name</td><td align=\"center\">:</td><td><input type=\"text\" size=\"4\" maxlength=\"4\"/></td></tr>"+
-      "<tr><td align=\"right\">URL</td><td align=\"center\">:</td><td><input type=\"text\" size=\"8\" maxlength=\"8\"/></td></tr>"+
+    container.append( "<tr><td vallign=\"top\" height=\"*\"><table cellpadding=\"0\" cellspacing=\"0\" border=\"0\">"+
+      "<tr><td align=\"right\" width=\"30%\"><p class=\""+this.cssPrefix+"_text\">Playlist position</p></td><td width=\"10px\" align=\"center\">:</td><td><input type=\"text\" size=\"4\" maxlength=\"4\"/></td></tr>"+
+      "<tr><td align=\"right\"><p class=\""+this.cssPrefix+"_text\">Station name</p></td><td align=\"center\">:</td><td><input type=\"text\" size=\"16\" maxlength=\"32\"/></td></tr>"+
+      "<tr><td align=\"right\"><p class=\""+this.cssPrefix+"_text\">URL</p></td><td align=\"center\">:</td><td><input type=\"text\" size=\"16\" maxlength=\"64\"/></td></tr>"+
       "</table></td></tr>" );
-    $("."+cssPrefix+"_button" ).mouseover(function (event) {
+
+    $("."+this.cssPrefix+"_button_1" ).mouseover(function (event) {
       $(this).css("background-color","#cc6699");
     });
-    $("."+cssPrefix+"_button" ).mouseout(function () {
+    $("."+this.cssPrefix+"_button_1" ).mouseout(function () {
          $(this).css("background-color","#cc99cc");
     });
-    
-    $("#mpd_stop" ).click(function () {
-       mpdCommand( 'stop', globalRadioControl );
+    $("#mpd_add" ).click(function () {
+       playSound("images/201.wav");
     });
-    $("#mpd_play" ).click(function () {
-       mpdCommand( 'play', globalRadioControl );
+    $("#mpd_mod" ).click(function () {
+       playSound("images/201.wav");
     });
-    
+    $("#mpd_del" ).click(function () {
+       playSound("images/201.wav");
+    });
   }
 }

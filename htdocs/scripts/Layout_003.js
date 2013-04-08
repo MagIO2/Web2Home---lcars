@@ -10,28 +10,35 @@ function Layout_003() {
 
     var container=$('#'+container);
     container.html("");
-    container.append( "<table style=\"table-layout:fixed;\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">"+
-                      "<tr><td width=\"40%\" height=\"5px\"></td><td width=\"10px\" height=\"5px\"></td><td width=\"100px\" height=\"5px\"></td><td width=\"10px\" height=\"5px\"></td><td width=\"*\" height=\"5px\"></td></tr>"+
-                      "<tr>"+
-                        "<td id=\""+response.name+"ContHead1_1\" width=\"40%\" height=\"16px\"></td>"+
-                        "<td width=\"10px\" height=\"16px\"></td>"+
-                        "<td id=\""+response.name+"ContHead1_2\" colspan=\"3\" height=\"16px\"></td>"+
+    container.append( "<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tr>"+
+                        "<td width=\"40%\" height=\"5px\"></td>"+
+                        "<td class=\""+cssPrefix+"_tsw\" height=\"5px\"></td>"+
+                        "<td class=\""+cssPrefix+"_mw\" height=\"5px\"></td>"+
+                        "<td class=\""+cssPrefix+"_tsw\" height=\"5px\"></td>"+
+                        "<td width=\"*\" height=\"5px\"></td>"+
                       "</tr><tr>"+
-                        "<td id=\""+response.name+"Cont1\"></td><td></td><td id=\""+response.name+"_menu1\"></td><td></td><td id=\""+response.name+"Cont2\" rowspan=\"3\"></td>"+
-                      "</tr>"+
-                      "<tr>"+
-                        "<td id=\""+response.name+"ContHead2_1\" colspan=\"3\" height=\"38px\"></td>"+
-                        "<td width=\"10px\" height=\"38px\"></td>"+
-                      "</tr>"+
-                      "<tr>"+
-                        "<td id=\""+response.name+"Cont3\"></td><td></td><td id=\""+response.name+"_menu2\"></td><td></td>"+
-                      "</tr>"+
-                      "<tr>"+
-                        "<td id=\""+response.name+"ContHead3_1\" width=\"40%\" height=\"16px\"></td>"+
-                        "<td width=\"10px\" height=\"16px\"></td>"+
-                        "<td id=\""+response.name+"ContHead3_2\" colspan=\"3\" height=\"16px\"></td>"+
-                      "</tr>"+
-                      "</table>" 
+                        "<td class=\""+cssPrefix+"_h2\" id=\""+response.name+"ContHead1_1\" width=\"40%\"></td>"+
+                        "<td class=\""+cssPrefix+"_tsw\ "+cssPrefix+"_h2\"></td>"+
+                        "<td class=\""+cssPrefix+"_h2\" id=\""+response.name+"ContHead1_2\" colspan=\"3\"></td>"+
+                      "</tr><tr>"+
+                        "<td class=\""+cssPrefix+"_content\" id=\""+response.name+"Cont1\"></td>"+
+                        "<td></td>"+
+                        "<td id=\""+response.name+"_menu1\"></td>"+
+                        "<td></td>"+
+                        "<td class=\""+cssPrefix+"_content2\" id=\""+response.name+"Cont2\" rowspan=\"3\"></td>"+
+                      "</tr><tr>"+
+                        "<td class=\""+cssPrefix+"_h\" id=\""+response.name+"ContHead2_1\" colspan=\"3\"></td>"+
+                        "<td class=\""+cssPrefix+"_h "+cssPrefix+"_tsw\"></td>"+
+                      "</tr><tr>"+
+                        "<td class=\""+cssPrefix+"_content3\" id=\""+response.name+"Cont3\"></td>"+
+                        "<td></td>"+
+                        "<td id=\""+response.name+"_menu2\"></td>"+
+                        "<td></td>"+
+                      "</tr><tr>"+
+                        "<td class=\""+cssPrefix+"_h2\" id=\""+response.name+"ContHead3_1\" width=\"40%\"></td>"+
+                        "<td class=\""+cssPrefix+"_h2 "+cssPrefix+"_tsw\"></td>"+
+                        "<td class=\""+cssPrefix+"_h2\" id=\""+response.name+"ContHead3_2\" colspan=\"3\"></td>"+
+                      "</tr></table>" 
     );
     
     addVerticalMenu(response.name+"_menu1", response, response.menu, response.onclick, "", cssPrefix );
@@ -44,9 +51,9 @@ function Layout_003() {
       color = response.hlcolor;
     }
     container.append("<table style=\"table-layout:fixed;\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\"><tr>"+
-      "<td width=\"50px\" height=\"16px\"><button class=\""+cssPrefix+"_back\" style=\"width:50px; height:16px; border-width:0px; border-top-left-radius:16px;\" /></td>"+
-      "<td width=\"*\" class=\""+cssPrefix+"_back\" height=\"16px\" colspan=\"2\"></td>"+
-      "<td width=\"34px\" height=\"16px\"><button class=\""+cssPrefix+"_back\" style=\"width:34px; height:16px; border-width:0px; border-top-right-radius:8px; border-bottom-right-radius:8px;\" /></td></tr></table>");
+      "<td class=\""+cssPrefix+"_rew "+cssPrefix+"_h2\"><div class=\""+cssPrefix+"_halftround2_l "+cssPrefix+"_b\"/></td>"+
+      "<td width=\"*\" class=\""+cssPrefix+"_b "+cssPrefix+"_h2\" colspan=\"2\"></td>"+
+      "<td class=\""+cssPrefix+"_w "+cssPrefix+"_h2\"><div class=\""+cssPrefix+"_round2_r "+cssPrefix+"_b\"/></td></tr></table>");
       
     // add the round edges in the middle lines
     container=$("#"+response.name+"ContHead2_1");
@@ -54,19 +61,19 @@ function Layout_003() {
     if( response.hlcolor ) {
       color = response.hlcolor;
     }
-    container.append("<table style=\"table-layout:fixed;\" cellspacing=\"0\" cellpadding=\"0\" border=\"0\">"+
+    container.append("<table cellspacing=\"0\" cellpadding=\"0\" border=\"0\">"+
       "<tr>"+
-        "<td width=\"34px\" height=\"16px\"><button class=\""+cssPrefix+"_back\" style=\"width:34px; height:16px; border-width:0px; border-top-left-radius:8px; border-bottom-left-radius:8px;\" /></td>"+
-        "<td width=\"*\" class=\""+cssPrefix+"_back\" height=\"16px\" colspan=\"2\"></td>"+
-        "<td width=\"50px\" height=\"16px\"><button class=\""+cssPrefix+"_back\" style=\"width:50px; height:16px; border-width:0px; border-bottom-right-radius:16px;\" /></td>"+
+        "<td class=\""+cssPrefix+"_w "+cssPrefix+"_h2\"><div class=\""+cssPrefix+"_round2_l "+cssPrefix+"_b\"/></td>"+
+        "<td width=\"*\" class=\""+cssPrefix+"_b "+cssPrefix+"_h2\" colspan=\"2\"></td>"+
+        "<td class=\""+cssPrefix+"_rew "+cssPrefix+"_h2\"><div class=\""+cssPrefix+"_halfbround2_r "+cssPrefix+"_b\"/></td>"+
       "</tr>"+
       "<tr>"+
-        "<td colspan=\"4\" height=\"6px\"></td>"+
+        "<td colspan=\"4\" class=\""+cssPrefix+"_sh\"></td>"+
       "</tr>"+
       "<tr>"+
-        "<td width=\"34px\" height=\"16px\"><button class=\""+cssPrefix+"_back2\" style=\"width:34px; height:16px; border-width:0px; border-top-left-radius:8px; border-bottom-left-radius:8px;\" /></td>"+
-        "<td width=\"*\" class=\""+cssPrefix+"_back2\" height=\"16px\" colspan=\"2\"></td>"+
-        "<td width=\"50px\" height=\"16px\"><button class=\""+cssPrefix+"_back2\" style=\"width:50px; height:16px; border-width:0px; border-top-right-radius:16px;\" /></td>"+
+        "<td class=\""+cssPrefix+"_w "+cssPrefix+"_h2\"><div class=\""+cssPrefix+"_round2_l "+cssPrefix+"_b2\"/></td>"+
+        "<td width=\"*\" class=\""+cssPrefix+"_b2 "+cssPrefix+"_h2\" colspan=\"2\"></td>"+
+        "<td class=\""+cssPrefix+"_rew "+cssPrefix+"_h2\"><div class=\""+cssPrefix+"_halftround2_r "+cssPrefix+"_b2\"/></td>"+
       "</tr>"+
       "</table>");
       
@@ -76,10 +83,10 @@ function Layout_003() {
     if( response.hlcolor ) {
       color = response.hlcolor;
     }
-    container.append("<table style=\"table-layout:fixed;\" cellspacing=\"0\" cellpadding=\"0\"><tr>"+
-      "<td width=\"50px\" height=\"16px\"><button class=\""+cssPrefix+"_back2\" style=\"width:50px; height:16px; border-width:0px; border-bottom-left-radius:16px;\" /></td>"+
-      "<td width=\"*\" class=\""+cssPrefix+"_back2\" height=\"16px\" colspan=\"2\"></td>"+
-      "<td width=\"34px\" height=\"16px\"><button class=\""+cssPrefix+"_back2\" style=\"width:34px; height:16px; border-width:0px; border-top-right-radius:8px; border-bottom-right-radius:8px;\" /></td></tr></table>");
+    container.append("<table cellspacing=\"0\" cellpadding=\"0\"><tr>"+
+      "<td class=\""+cssPrefix+"_rew "+cssPrefix+"_h2\"><div class=\""+cssPrefix+"_halfbround2_l "+cssPrefix+"_b2\"/></td>"+
+      "<td width=\"*\" class=\""+cssPrefix+"_b2 "+cssPrefix+"_h2\" colspan=\"2\"></td>"+
+      "<td class=\""+cssPrefix+"_w "+cssPrefix+"_h2\"><div class=\""+cssPrefix+"_round2_r "+cssPrefix+"_b2\"/></td></tr></table>");
   
     // create the content of the 3 panels if available
     if( response.defContent1 ) {

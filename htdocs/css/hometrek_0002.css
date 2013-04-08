@@ -1,6 +1,42 @@
-.ht0002_back { background-color:#9999cc; }
-.ht0002_menu_back { background-color:#9999cc; }
-.ht0002_menu_text { font-family:lcarsgtj3,Arial; font-size:26px; color:#444444; vertical-align:middle; height:34px; }
-.ht0002_title { font-family:lcarsgtj3,Arial; font-size:30px; color:#cccccc; height:34px; }
+/*
+   for the whole CSS a post-fix of 2, 3 ... define additional styles and usually build a group    
+ 
+   h=height normal, 
+   w=width normal, 
+   sw=spacer width, 
+   mw=menu width, 
+   b=background,
+   rew=round edge width
+*/
+
+/* some heights */
+.ht0002_h { height:34px; }
+.ht0002_h2 { height:16px; }
+.ht0002_sh { height:4px; }
+
+/* some widths */
+.ht0002_w { width:34px; }
+.ht0002_sw { width:4px; }
+.ht0002_tsw { width:10px; }
+.ht0002_rew { width:50px; }
+.ht0002_mw { width:120px; }
+
+/* background colors for the content panels */
+.ht0002_b { background-color:#9999cc; }
 .ht0002_content { background-color:#000000; }
 .ht0002_content2 { background-color:#000000; }
+
+/* styles for menu text and title */
+.ht0002_mt { font-family:lcarsgtj3,Arial; font-size:1.4em; color:#444444; }
+.ht0002_title { font-family:lcarsgtj3,Arial; font-size:1.6em; color:#cccccc; }
+/* text style for the time */
+.ht0002_time { font-family:lcarsgtj3,Arial; font-size:1.1em; color:#9999ff; }
+
+/* these are for the round edges in the top and bottom bar */
+.ht0002_round_l { width:34px; height:34px; background-color:#9999cc; border-width:0px; border-top-left-radius:17px; border-bottom-left-radius:17px; }
+.ht0002_round_r { width:34px; height:34px; background-color:#9999cc; border-width:0px; border-top-right-radius:17px; border-bottom-right-radius:17px; }
+.ht0002_round2_l { width:34px; height:16px; background-color:#9999cc; border-width:0px; border-top-left-radius:8px; border-bottom-left-radius:8px; }
+.ht0002_round2_r { width:34px; height:16px; background-color:#9999cc; border-width:0px; border-top-right-radius:8px; border-bottom-right-radius:8px; }
+.ht0002_halfbround_r { width:50px; height:16px; background-color:#9999cc; border-width:0px; border-bottom-right-radius:16px; }
+.ht0002_halftround_l { width:50px; height:34px; background-color:#9999cc; border-width:0px; border-top-left-radius:34px; }
+
