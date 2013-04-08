@@ -15,7 +15,7 @@ This example shows a setup-example (as of 24.02.2013) which describes a login-sc
           'layout'     : 'Layout_001',<br>
           'scheme'     : 'hometrek_style1.css',<br>
           'timeline'   : 'true',<br>
-          'headline'   : 'BENKYS LCARS - LOGIN SCREEN',<br>
+          'headline'   : 'MAGIO2 LCARS - LOGIN SCREEN',<br>
           'hlwidth'    : '320px',<br>
           'hlcolor'    : 'trk_hellgrau',<br>
           'menu'       : 'Off',<br>
